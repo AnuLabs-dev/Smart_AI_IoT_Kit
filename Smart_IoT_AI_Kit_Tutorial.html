@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Smart IoT & AI Kit — Complete Tutorial Manual</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;0,9..40,900;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b1120;
+  --bg:#f5f7ff;
+  --sidebar:#0d1b3e;
+  --sidebar2:#112354;
+  --accent:#00d4ff;
+  --accent2:#7c3aed;
+  --accent3:#f59e0b;
+  --green:#059669;
+  --red:#dc2626;
+  --border:#d1d9f0;
+  --card:#ffffff;
+  --muted:#6b7a99;
+  --code-bg:#0d1117;
+  --sh:0 4px 28px rgba(13,27,62,.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px}
+
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:260px;height:100vh;background:var(--sidebar);overflow-y:auto;z-index:400;display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,.06)}
+.sb::-webkit-scrollbar{width:4px}.sb::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}
+.sb-brand{padding:1.2rem 1.1rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:.7rem}
+.sb-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;box-shadow:0 0 16px rgba(0,212,255,.35)}
+.sb-title{color:#fff;font-size:.78rem;font-weight:700;line-height:1.3}
+.sb-title span{display:block;color:rgba(255,255,255,.4);font-size:.66rem;font-weight:400;margin-top:1px}
+.sb-nav{flex:1;padding:.4rem 0}
+.np{border-bottom:1px solid rgba(255,255,255,.05)}
+.npt{display:flex;align-items:center;gap:.5rem;padding:.6rem 1rem;color:rgba(255,255,255,.75);font-size:.775rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .15s;letter-spacing:.01em}
+.npt:hover,.npt.active{background:rgba(0,212,255,.08);color:#fff}
+.npt.active{border-left:2px solid var(--accent)}
+.pnum{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;border-radius:4px;padding:.02rem .38rem;font-size:.64rem;font-weight:900;flex-shrink:0;font-family:'Space Mono',monospace}
+.ns{display:none;padding:.08rem 0 .3rem 2.6rem}
+.np.open .ns{display:block}
+.ns a{display:block;color:rgba(255,255,255,.38);font-size:.71rem;padding:.18rem .4rem;text-decoration:none;border-radius:3px;transition:color .12s}
+.ns a:hover{color:rgba(255,255,255,.8)}
+.sb-foot{padding:.7rem 1.1rem;border-top:1px solid rgba(255,255,255,.07);font-size:.63rem;color:rgba(255,255,255,.22);text-align:center}
+
+/* MAIN */
+.main{margin-left:260px;min-height:100vh}
+
+/* PART HEADERS */
+.ph{padding:2.8rem 2.4rem 2rem;position:relative;overflow:hidden}
+.ph::before{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+.ph::after{content:'';position:absolute;right:60px;bottom:-80px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.03);pointer-events:none}
+.ph.c1{background:linear-gradient(135deg,#0d1b3e 0%,#1a2f6b 60%,#1e3a8a 100%)}
+.ph.c2{background:linear-gradient(135deg,#064e3b,#065f46,#047857)}
+.ph.c3{background:linear-gradient(135deg,#3b0764,#4c1d95,#5b21b6)}
+.ph.c4{background:linear-gradient(135deg,#7c1d13,#9f1239,#be123c)}
+.ph.c5{background:linear-gradient(135deg,#164e63,#0e7490,#0891b2)}
+.ph.c6{background:linear-gradient(135deg,#1c1917,#292524,#44403c)}
+.ph.c7{background:linear-gradient(135deg,#14532d,#15803d,#16a34a)}
+.ph.c8{background:linear-gradient(135deg,#4a1d96,#6d28d9,#7c3aed)}
+.part-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:.22rem .85rem;font-size:.66rem;font-weight:700;color:rgba(255,255,255,.85);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:.75rem;backdrop-filter:blur(4px)}
+.ph h1{font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:900;color:#fff;margin-bottom:.4rem;line-height:1.2}
+.ph h1 em{font-style:normal;color:var(--accent)}
+.ph-sub{color:rgba(255,255,255,.65);font-size:.88rem;max-width:700px;line-height:1.6}
+
+/* SECTIONS */
+.sec{padding:1.8rem 2.4rem;background:var(--card);border-bottom:2px solid var(--border)}
+.sec.alt{background:#f8faff}
+.sh{font-size:.95rem;font-weight:800;color:var(--sidebar);margin-bottom:1rem;padding-bottom:.4rem;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:.45rem;font-family:'Space Mono',monospace}
+.sh-icon{font-size:1rem}
+
+/* CARDS GRID */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:.85rem;margin-bottom:1.2rem}
+.card{background:var(--card);border-radius:12px;border:2px solid var(--border);padding:1rem 1.1rem;box-shadow:var(--sh);transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(13,27,62,.14)}
+.c-ico{font-size:1.5rem;margin-bottom:.4rem}
+.card h4{font-size:.82rem;font-weight:800;color:var(--sidebar);margin-bottom:.22rem}
+.card p{font-size:.76rem;color:var(--muted);line-height:1.5}
+
+/* COMPONENT GRID */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem;margin-bottom:1rem}
+.comp-item{background:var(--card);border:2px solid var(--border);border-radius:10px;padding:.75rem;text-align:center;font-size:.74rem;font-weight:700;color:var(--sidebar);transition:border-color .15s,box-shadow .15s}
+.comp-item:hover{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,212,255,.1)}
+.comp-ico{font-size:1.3rem;margin-bottom:.3rem}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;border-radius:10px;box-shadow:var(--sh);margin-bottom:1.2rem}
+table.tbl{width:100%;border-collapse:collapse;min-width:280px}
+table.tbl thead tr{background:var(--sidebar)}
+table.tbl th{color:#fff;padding:.5rem .8rem;text-align:left;font-size:.74rem;font-weight:700;letter-spacing:.03em}
+table.tbl td{padding:.44rem .8rem;border-bottom:1px solid var(--border);font-size:.8rem}
+table.tbl tr:nth-child(even) td{background:#f4f7ff}
+table.tbl td:first-child{font-weight:700;color:var(--sidebar2)}
+.pin{display:inline-block;background:var(--sidebar);color:#fff;border-radius:3px;padding:.05rem .4rem;font-size:.68rem;font-weight:700;font-family:'Space Mono',monospace}
+.pin.r{background:var(--red)}.pin.g{background:var(--green)}.pin.b{background:#1d4ed8}.pin.o{background:#c2410c}.pin.p{background:var(--accent2)}.pin.c{background:var(--accent);color:#000}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:.55rem;margin-bottom:1rem}
+.step{display:flex;align-items:flex-start;gap:.75rem;padding:.7rem .9rem;background:var(--bg);border-radius:9px;border:1px solid var(--border)}
+.sn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;font-weight:900;font-size:.72rem;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-family:'Space Mono',monospace}
+.step-body{font-size:.82rem;color:var(--ink);line-height:1.55}
+.step-body strong{color:var(--sidebar)}
+code{background:#eef1fa;color:#3730a3;border-radius:4px;padding:.1rem .4rem;font-size:.78rem;font-family:'Space Mono',monospace}
+
+/* CODE BLOCKS */
+.code-block{background:var(--code-bg);border-radius:11px;overflow:hidden;margin-bottom:1rem;box-shadow:var(--sh)}
+.code-hdr{display:flex;align-items:center;justify-content:space-between;padding:.5rem .9rem;background:#161b27;border-bottom:1px solid #2a3044}
+.code-lang{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;border-radius:4px;padding:.08rem .5rem;font-size:.66rem;font-weight:900;font-family:'Space Mono',monospace;text-transform:uppercase}
+.code-file{color:rgba(255,255,255,.35);font-size:.7rem;font-family:'Space Mono',monospace}
+.code-block pre{padding:1.1rem 1.1rem;font-family:'Space Mono',monospace;font-size:.73rem;line-height:1.7;overflow-x:auto;color:#e2e8f0}
+.code-block pre::-webkit-scrollbar{height:4px}.code-block pre::-webkit-scrollbar-thumb{background:#334155;border-radius:2px}
+.kw{color:#c792ea}.fn{color:#82aaff}.str{color:#c3e88d}.num{color:#f78c6c}.pp{color:#ffcb6b}.cm{color:#546e7a;font-style:italic}
+
+/* ALERTS */
+.al{display:flex;align-items:flex-start;gap:.65rem;padding:.75rem 1rem;border-radius:9px;margin-bottom:1rem;font-size:.82rem;line-height:1.55}
+.al.info{background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8}
+.al.warn{background:#fffbeb;border:1px solid #fde68a;color:#92400e}
+.al.ok{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d}
+.al.danger{background:#fff1f2;border:1px solid #fecdd3;color:#881337}
+.al strong{font-weight:800}
+
+/* PROJECTS */
+.proj-card{background:var(--card);border:2px solid var(--border);border-radius:13px;overflow:hidden;box-shadow:var(--sh);margin-bottom:1.2rem}
+.proj-hdr{display:flex;align-items:center;gap:.9rem;padding:.9rem 1.1rem;border-bottom:2px solid var(--border)}
+.proj-ico{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.proj-meta .lbl{font-size:.65rem;font-weight:800;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.proj-meta h3{font-size:.95rem;font-weight:800;color:var(--sidebar);margin:.1rem 0 .25rem}
+.proj-tags{display:flex;gap:.35rem;flex-wrap:wrap}
+.tag{font-size:.66rem;font-weight:700;border-radius:999px;padding:.18rem .6rem}
+.proj-body{display:grid;grid-template-columns:1fr 1.4fr;gap:1rem;padding:1rem 1.1rem}
+@media(max-width:700px){.proj-body{grid-template-columns:1fr}}
+
+/* WIRING TABLE */
+.wire-tbl{border-radius:8px;overflow:hidden;border:2px solid var(--border);font-size:.78rem;width:100%;margin-bottom:.8rem}
+.wire-tbl th{background:var(--sidebar2);color:#fff;padding:.4rem .65rem;text-align:left;font-size:.71rem}
+.wire-tbl td{padding:.38rem .65rem;border-bottom:1px solid var(--border);background:var(--card)}
+.wire-tbl tr:last-child td{border-bottom:none}
+
+/* RESISTOR CHART */
+.res-chart{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.5rem;margin-bottom:1rem}
+.res-row{border-radius:8px;padding:.5rem .7rem;border:2px solid rgba(0,0,0,.08);display:flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:700}
+.res-swatch{width:18px;height:18px;border-radius:4px;border:2px solid rgba(0,0,0,.12);flex-shrink:0}
+.res-val{color:var(--muted);font-weight:400;font-size:.68rem}
+
+/* COMPLETION BANNER */
+.done{text-align:center;padding:3rem 2rem;background:linear-gradient(135deg,var(--sidebar),var(--sidebar2));color:#fff;border-top:3px solid var(--accent)}
+.done h2{font-size:2rem;font-weight:900;margin:.5rem 0}
+.done h2 em{font-style:normal;color:var(--accent)}
+.done p{color:rgba(255,255,255,.6);margin-bottom:1.5rem;font-size:.9rem}
+.done-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem}
+.done-tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.4rem .9rem;font-size:.74rem;font-weight:600;color:rgba(255,255,255,.8)}
+.done-tag::before{content:'✅ ';font-size:.8rem}
+footer{background:#0a0f1e;color:rgba(255,255,255,.3);text-align:center;padding:1.5rem 2rem;font-size:.74rem;line-height:1.8}
+footer strong{color:rgba(255,255,255,.6)}
+
+@media(max-width:900px){
+  .sb{width:100%;height:auto;position:relative}
+  .main{margin-left:0}
+  .ph{padding:2rem 1.2rem 1.6rem}
+  .sec{padding:1.4rem 1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sb">
+  <div class="sb-brand">
+    <div class="sb-icon">🤖</div>
+    <div class="sb-title">Smart IoT &amp; AI Kit<span>Complete Tutorial Manual</span></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="np open"><a class="npt" href="#p1"><span class="pnum">1</span> Kit Overview</a><div class="ns"><a href="#p1a">Introduction</a><a href="#p1b">Components List</a><a href="#p1c">Table of Contents</a></div></div>
+    <div class="np"><a class="npt" href="#p2"><span class="pnum">2</span> ESP32-CAM Setup</a><div class="ns"><a href="#p2a">Features</a><a href="#p2b">Pin Reference</a><a href="#p2c">Arduino IDE</a></div></div>
+    <div class="np"><a class="npt" href="#p3"><span class="pnum">3</span> Sensors Guide</a><div class="ns"><a href="#p3a">DHT11 &amp; BMP280</a><a href="#p3b">Ultrasonic &amp; Motion</a><a href="#p3c">Soil &amp; Rain</a><a href="#p3d">Gas &amp; Flame</a></div></div>
+    <div class="np"><a class="npt" href="#p4"><span class="pnum">4</span> Actuators Guide</a><div class="ns"><a href="#p4a">Servo Motor</a><a href="#p4b">Stepper Motor</a><a href="#p4c">Relay Module</a><a href="#p4d">Buzzer &amp; RGB</a></div></div>
+    <div class="np"><a class="npt" href="#p5"><span class="pnum">5</span> Display &amp; Input</a><div class="ns"><a href="#p5a">128x64 OLED</a><a href="#p5b">RFID Module</a><a href="#p5c">Push Button</a></div></div>
+    <div class="np"><a class="npt" href="#p6"><span class="pnum">6</span> IoT Projects</a><div class="ns"><a href="#j1">Smart Doorbell</a><a href="#j2">Weather Station</a><a href="#j3">Security System</a><a href="#j4">Plant Monitor</a><a href="#j5">Smart Gate</a></div></div>
+    <div class="np"><a class="npt" href="#p7"><span class="pnum">7</span> AI Vision Projects</a><div class="ns"><a href="#j6">Face Detection</a><a href="#j7">TFLite Person Detect</a><a href="#j8">AI Dashboard</a><a href="#j9">Edge Impulse Intro</a><a href="#j10">Image Classification</a><a href="#j11">Object Detection (FOMO)</a><a href="#j12">Anomaly Detection</a><a href="#j13">Smart Intruder Alert</a></div></div>
+    <div class="np"><a class="npt" href="#p8"><span class="pnum">8</span> Resistor Reference</a><div class="ns"><a href="#p8a">Color Chart</a><a href="#p8b">Examples</a></div></div>
+  </nav>
+  <div class="sb-foot">Smart IoT &amp; AI Kit · Complete Manual</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ===== PART 1: KIT OVERVIEW ===== -->
+<div id="p1">
+  <div class="ph c1">
+    <div class="part-badge">📦 Part 1 of 8</div>
+    <h1>Smart IoT &amp; AI Kit <em>Overview</em></h1>
+    <p class="ph-sub">Introduction to the Smart IoT & AI Kit — 30+ components for building real-world IoT and AI-powered projects with ESP32-CAM.</p>
+  </div>
+
+  <div class="sec" id="p1a">
+    <div class="sh"><span class="sh-icon">🤖</span> What is the Smart IoT &amp; AI Kit?</div>
+    <p style="font-size:.86rem;color:var(--muted);margin-bottom:1.2rem;max-width:800px;line-height:1.7">This kit combines the powerful ESP32-CAM microcontroller with 30+ sensors, actuators, and modules. It lets you build Wi-Fi connected IoT systems and AI-powered applications including face detection, object recognition, and remote surveillance — all from a beginner-friendly platform.</p>
+    <div class="cards">
+      <div class="card"><div class="c-ico">📷</div><h4>ESP32-CAM</h4><p>Wi-Fi + Bluetooth + Camera. Run face detection and video streaming from one chip.</p></div>
+      <div class="card"><div class="c-ico">🌡️</div><h4>8+ Sensors</h4><p>Temperature, humidity, pressure, soil, rain, gas, flame, motion and ultrasonic.</p></div>
+      <div class="card"><div class="c-ico">⚙️</div><h4>Actuators</h4><p>Servo, stepper motor, relay, RGB LED and buzzer for real-world control.</p></div>
+      <div class="card"><div class="c-ico">📡</div><h4>IoT Connectivity</h4><p>Wi-Fi web server, ThingSpeak cloud, MQTT and mobile dashboards.</p></div>
+      <div class="card"><div class="c-ico">🧠</div><h4>AI On-Device</h4><p>Face detection and object recognition running locally on the ESP32-CAM.</p></div>
+      <div class="card"><div class="c-ico">🎓</div><h4>E-Book Tutorial</h4><p>Step-by-step projects from beginner to advanced, with wiring and full code.</p></div>
+    </div>
+  </div>
+
+  <div class="sec alt" id="p1b">
+    <div class="sh"><span class="sh-icon">🧰</span> Complete Components List</div>
+    <div class="comp-grid">
+      <div class="comp-item"><div class="comp-ico">📷</div>ESP32-CAM</div>
+      <div class="comp-item"><div class="comp-ico">⚡</div>Current Sensor</div>
+      <div class="comp-item"><div class="comp-ico">🧩</div>Mini Breadboard</div>
+      <div class="comp-item"><div class="comp-ico">🔌</div>Programming Cable</div>
+      <div class="comp-item"><div class="comp-ico">🧩</div>Breadboard</div>
+      <div class="comp-item"><div class="comp-ico">🚶</div>Motion Sensor</div>
+      <div class="comp-item"><div class="comp-ico">🌱</div>Soil Sensor</div>
+      <div class="comp-item"><div class="comp-ico">🌈</div>RGB Module</div>
+      <div class="comp-item"><div class="comp-ico">📡</div>Ultrasonic Sensor</div>
+      <div class="comp-item"><div class="comp-ico">🖥️</div>128×64 OLED</div>
+      <div class="comp-item"><div class="comp-ico">🔧</div>ULN2003 Driver</div>
+      <div class="comp-item"><div class="comp-ico">⚙️</div>Stepper Motor</div>
+      <div class="comp-item"><div class="comp-ico">🌡️</div>DHT11 Module</div>
+      <div class="comp-item"><div class="comp-ico">🔑</div>RFID Module</div>
+      <div class="comp-item"><div class="comp-ico">🌬️</div>BMP280 Sensor</div>
+      <div class="comp-item"><div class="comp-ico">💡</div>LEDs (3 colors)</div>
+      <div class="comp-item"><div class="comp-ico">🦾</div>Servo Motor</div>
+      <div class="comp-item"><div class="comp-ico">💨</div>Gas Sensor</div>
+      <div class="comp-item"><div class="comp-ico">🌧️</div>Rain Sensor</div>
+      <div class="comp-item"><div class="comp-ico">🔁</div>Relay Module</div>
+      <div class="comp-item"><div class="comp-ico">🔔</div>Buzzer Module</div>
+      <div class="comp-item"><div class="comp-ico">🔥</div>Flame Sensor</div>
+      <div class="comp-item"><div class="comp-ico">🌡️</div>NTC Sensor</div>
+      <div class="comp-item"><div class="comp-ico">⚡</div>Voltage Sensor</div>
+      <div class="comp-item"><div class="comp-ico">🔘</div>Push Button</div>
+      <div class="comp-item"><div class="comp-ico">Ω</div>220,330,10k,1k Ω</div>
+      <div class="comp-item"><div class="comp-ico">🔗</div>F-M Jumper</div>
+      <div class="comp-item"><div class="comp-ico">🎛️</div>Potentiometer</div>
+      <div class="comp-item"><div class="comp-ico">🔗</div>Jumper Cables</div>
+      <div class="comp-item"><div class="comp-ico">🔗</div>M-M Jumper</div>
+    </div>
+    <div class="al info">💡 <div>All components are pre-tested and breadboard-compatible. The programming cable supports USB-to-Serial for the ESP32-CAM. Refer to the <strong>Resistor Color Card</strong> included in your kit to identify resistor values.</div></div>
+  </div>
+
+  <div class="sec" id="p1c">
+    <div class="sh"><span class="sh-icon">📋</span> Table of Contents</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>#</th><th>Topic</th><th>Part</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Kit Overview &amp; Components</td><td>Part 1</td></tr>
+          <tr><td>2</td><td>ESP32-CAM Setup &amp; Arduino IDE</td><td>Part 2</td></tr>
+          <tr><td>3</td><td>Sensors Guide — DHT11, BMP280, Ultrasonic, Soil, Rain, Gas, Flame</td><td>Part 3</td></tr>
+          <tr><td>4</td><td>Actuators Guide — Servo, Stepper, Relay, RGB, Buzzer</td><td>Part 4</td></tr>
+          <tr><td>5</td><td>Display &amp; Input — OLED, RFID, Push Button</td><td>Part 5</td></tr>
+          <tr><td>6–10</td><td>IoT Projects 1–5 (Smart Doorbell to Smart Gate)</td><td>Part 6</td></tr>
+          <tr><td>11–13</td><td>AI Projects 1–3 (Face Detection, Object Detection, AI Dashboard)</td><td>Part 7</td></tr>
+          <tr><td>14</td><td>Resistor Color Coding Reference</td><td>Part 8</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PART 2: ESP32-CAM ===== -->
+<div id="p2">
+  <div class="ph c2">
+    <div class="part-badge">🔧 Part 2 of 8</div>
+    <h1>ESP32-CAM &amp; <em>Arduino IDE Setup</em></h1>
+    <p class="ph-sub">ESP32-CAM features, GPIO pin reference, camera specifications and step-by-step Arduino IDE installation guide.</p>
+  </div>
+
+  <div class="sec" id="p2a">
+    <div class="sh"><span class="sh-icon">⚡</span> ESP32-CAM Key Features</div>
+    <div class="cards">
+      <div class="card"><div class="c-ico">📷</div><h4>OV2640 Camera</h4><p>2MP camera supporting UXGA (1600×1200) resolution, JPEG/BMP output.</p></div>
+      <div class="card"><div class="c-ico">📶</div><h4>Wi-Fi + Bluetooth</h4><p>802.11 b/g/n 2.4GHz Wi-Fi and Bluetooth 4.2 + BLE on one chip.</p></div>
+      <div class="card"><div class="c-ico">🧠</div><h4>Dual-Core 240 MHz</h4><p>Xtensa LX6 — handles video streaming and IoT control simultaneously.</p></div>
+      <div class="card"><div class="c-ico">💾</div><h4>4MB PSRAM</h4><p>Extra RAM for frame buffers required by camera and face-detection models.</p></div>
+      <div class="card"><div class="c-ico">🗂️</div><h4>MicroSD Slot</h4><p>Store captured images and video locally on up to 4GB MicroSD card.</p></div>
+      <div class="card"><div class="c-ico">🔦</div><h4>Onboard Flash LED</h4><p>White LED for low-light photography, controlled via GPIO 4.</p></div>
+    </div>
+    <div class="al warn">⚠️ <div>The ESP32-CAM does <strong>not have a built-in USB port</strong>. You must use the included <strong>Programming Cable (USB-to-Serial adapter)</strong> to upload code. Connect: TX→RX0, RX→TX0, GND→GND, 5V→5V, IO0→GND (for flash mode).</div></div>
+  </div>
+
+  <div class="sec alt" id="p2b">
+    <div class="sh"><span class="sh-icon">📌</span> GPIO Pin Reference</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>GPIO</th><th>Label</th><th>Function</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pin c">GPIO 0</span></td><td>IO0</td><td>Boot / Flash mode</td><td>Pull LOW to enter upload mode</td></tr>
+          <tr><td><span class="pin g">GPIO 1</span></td><td>TX0</td><td>UART TX</td><td>Used for programming</td></tr>
+          <tr><td><span class="pin g">GPIO 3</span></td><td>RX0</td><td>UART RX</td><td>Used for programming</td></tr>
+          <tr><td><span class="pin b">GPIO 4</span></td><td>FLASH</td><td>Onboard flash LED</td><td>HIGH = LED on</td></tr>
+          <tr><td><span class="pin">GPIO 12</span></td><td>IO12</td><td>General I/O / SD DAT2</td><td>Avoid if using SD</td></tr>
+          <tr><td><span class="pin">GPIO 13</span></td><td>IO13</td><td>General I/O / SD DAT3</td><td>General use</td></tr>
+          <tr><td><span class="pin">GPIO 14</span></td><td>IO14</td><td>General I/O / SD CLK</td><td>General use</td></tr>
+          <tr><td><span class="pin">GPIO 15</span></td><td>IO15</td><td>General I/O / SD CMD</td><td>General use</td></tr>
+          <tr><td><span class="pin r">GPIO 16</span></td><td>IO16</td><td>PSRAM CS / U2RXD</td><td>Reserved for PSRAM</td></tr>
+          <tr><td><span class="pin o">GPIO 33</span></td><td>IO33</td><td>Onboard status LED</td><td>Active LOW (inverted)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="al danger">🚫 <div>GPIOs 34, 35, 36, 39 are <strong>input-only</strong> — they cannot be used as outputs. GPIO 6–11 are connected internally to SPI flash and must <strong>never</strong> be used.</div></div>
+  </div>
+
+  <div class="sec" id="p2c">
+    <div class="sh"><span class="sh-icon">💻</span> Arduino IDE Setup</div>
+    <div class="steps">
+      <div class="step"><div class="sn">1</div><div class="step-body">Download and install <strong>Arduino IDE 2.x</strong> from <code>arduino.cc/en/software</code></div></div>
+      <div class="step"><div class="sn">2</div><div class="step-body"><strong>File → Preferences</strong> → paste this URL in <em>Additional boards manager URLs</em>:<br><code style="font-size:.7rem;word-break:break-all;">https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code></div></div>
+      <div class="step"><div class="sn">3</div><div class="step-body"><strong>Tools → Board → Boards Manager</strong> → search <code>esp32</code> → install <strong>ESP32 by Espressif Systems v2.x</strong></div></div>
+      <div class="step"><div class="sn">4</div><div class="step-body"><strong>Tools → Board → ESP32 Arduino</strong> → select <strong>AI Thinker ESP32-CAM</strong></div></div>
+      <div class="step"><div class="sn">5</div><div class="step-body">Connect your programming cable. <strong>Bridge IO0 to GND</strong>. Select port under <strong>Tools → Port</strong>.</div></div>
+      <div class="step"><div class="sn">6</div><div class="step-body">Click <strong>Upload ▶</strong>. When "Connecting..." appears, press the <strong>RESET</strong> button on the board briefly.</div></div>
+      <div class="step"><div class="sn">7</div><div class="step-body"><strong>After upload:</strong> remove the IO0-to-GND bridge, press RESET again to run the sketch.</div></div>
+    </div>
+    <div class="al info">💡 <div>Install required libraries via <strong>Sketch → Include Library → Manage Libraries</strong>: <code>DHT sensor library</code>, <code>Adafruit BMP280</code>, <code>Adafruit SSD1306</code>, <code>ESP32Servo</code>, <code>MFRC522</code> (RFID), <code>Stepper</code>.</div></div>
+  </div>
+</div>
+
+<!-- ===== PART 3: SENSORS ===== -->
+<div id="p3">
+  <div class="ph c3">
+    <div class="part-badge">🌡️ Part 3 of 8</div>
+    <h1>Sensors <em>Complete Guide</em></h1>
+    <p class="ph-sub">Wiring diagrams, pin configurations and sample code for every sensor in the kit.</p>
+  </div>
+
+  <div class="sec" id="p3a">
+    <div class="sh"><span class="sh-icon">🌡️</span> DHT11 Temperature &amp; Humidity Sensor</div>
+    <div class="proj-body" style="padding:0;gap:1.2rem;margin-bottom:1rem">
+      <div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>DHT11 Pin</th><th>ESP32-CAM</th></tr></thead>
+            <tbody>
+              <tr><td>VCC</td><td><span class="pin g">3.3V</span></td></tr>
+              <tr><td>DATA</td><td><span class="pin b">GPIO 13</span></td></tr>
+              <tr><td>GND</td><td><span class="pin r">GND</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="al info">💡 <div>Place a <strong>10kΩ pull-up resistor</strong> between VCC and DATA pin for reliable communication.</div></div>
+        <div class="al ok">📦 <div>Requires: <strong>DHT sensor library by Adafruit</strong> — install from Library Manager.</div></div>
+      </div>
+      <div>
+        <div class="code-block">
+          <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">dht11_sensor.ino</span></div>
+          <pre><span class="pp">#include</span> <span class="str">&lt;DHT.h&gt;</span>
+<span class="pp">#define</span> DHTPIN <span class="num">13</span>
+<span class="pp">#define</span> DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  Serial.<span class="fn">begin</span>(<span class="num">115200</span>);
+  dht.<span class="fn">begin</span>();
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">float</span> h = dht.<span class="fn">readHumidity</span>();
+  <span class="kw">float</span> t = dht.<span class="fn">readTemperature</span>();
+  <span class="kw">if</span>(isnan(h) || isnan(t)) {
+    Serial.<span class="fn">println</span>(<span class="str">"Read failed!"</span>);
+    <span class="kw">return</span>;
+  }
+  Serial.<span class="fn">printf</span>(<span class="str">"Temp: %.1f°C  Hum: %.1f%%\n"</span>, t, h);
+  delay(<span class="num">2000</span>);
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="sh"><span class="sh-icon">🌬️</span> BMP280 Pressure &amp; Temperature Sensor (I2C)</div>
+    <div class="proj-body" style="padding:0;gap:1.2rem;margin-bottom:1rem">
+      <div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>BMP280 Pin</th><th>ESP32-CAM</th></tr></thead>
+            <tbody>
+              <tr><td>VCC</td><td><span class="pin g">3.3V</span></td></tr>
+              <tr><td>GND</td><td><span class="pin r">GND</span></td></tr>
+              <tr><td>SCL</td><td><span class="pin b">GPIO 14</span> (SCL)</td></tr>
+              <tr><td>SDA</td><td><span class="pin b">GPIO 15</span> (SDA)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="al info">📡 <div>Default I2C address: <strong>0x76</strong> (or 0x77 if SDO pin is HIGH).</div></div>
+      </div>
+      <div>
+        <div class="code-block">
+          <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">bmp280.ino</span></div>
+          <pre><span class="pp">#include</span> <span class="str">&lt;Wire.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;Adafruit_BMP280.h&gt;</span>
+Adafruit_BMP280 bmp;
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  Serial.<span class="fn">begin</span>(<span class="num">115200</span>);
+  Wire.<span class="fn">begin</span>(<span class="num">15</span>, <span class="num">14</span>); <span class="cm">// SDA, SCL</span>
+  <span class="kw">if</span>(!bmp.<span class="fn">begin</span>(<span class="num">0x76</span>)) {
+    Serial.<span class="fn">println</span>(<span class="str">"BMP280 not found!"</span>);
+    <span class="kw">while</span>(<span class="num">1</span>);
+  }
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  Serial.<span class="fn">printf</span>(<span class="str">"Temp:%.1fC  Press:%.1fhPa  Alt:%.1fm\n"</span>,
+    bmp.<span class="fn">readTemperature</span>(),
+    bmp.<span class="fn">readPressure</span>()/<span class="num">100.0F</span>,
+    bmp.<span class="fn">readAltitude</span>(<span class="num">1013.25</span>));
+  delay(<span class="num">2000</span>);
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec alt" id="p3b">
+    <div class="sh"><span class="sh-icon">📡</span> HC-SR04 Ultrasonic Distance Sensor</div>
+    <div class="proj-body" style="padding:0;gap:1.2rem;margin-bottom:1.2rem">
+      <div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>HC-SR04 Pin</th><th>ESP32-CAM</th></tr></thead>
+            <tbody>
+              <tr><td>VCC</td><td><span class="pin g">5V</span></td></tr>
+              <tr><td>TRIG</td><td><span class="pin b">GPIO 12</span></td></tr>
+              <tr><td>ECHO</td><td><span class="pin b">GPIO 13</span></td></tr>
+              <tr><td>GND</td><td><span class="pin r">GND</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="al warn">⚠️ <div>ECHO pin outputs 5V. Use a <strong>1kΩ + 2kΩ voltage divider</strong> to reduce to 3.3V to protect ESP32-CAM.</div></div>
+      </div>
+      <div>
+        <div class="code-block">
+          <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">ultrasonic.ino</span></div>
+          <pre><span class="pp">#define</span> TRIG <span class="num">12</span>
+<span class="pp">#define</span> ECHO <span class="num">13</span>
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  Serial.<span class="fn">begin</span>(<span class="num">115200</span>);
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  digitalWrite(TRIG, LOW); delayMicroseconds(<span class="num">2</span>);
+  digitalWrite(TRIG, HIGH); delayMicroseconds(<span class="num">10</span>);
+  digitalWrite(TRIG, LOW);
+  <span class="kw">long</span> dur = pulseIn(ECHO, HIGH);
+  <span class="kw">float</span> dist = dur * <span class="num">0.034</span> / <span class="num">2</span>;
+  Serial.<span class="fn">printf</span>(<span class="str">"Distance: %.1f cm\n"</span>, dist);
+  delay(<span class="num">500</span>);
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="sh"><span class="sh-icon">🚶</span> PIR Motion Sensor (HC-SR501)</div>
+    <div class="proj-body" style="padding:0;gap:1.2rem">
+      <div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>PIR Pin</th><th>ESP32-CAM</th></tr></thead>
+            <tbody>
+              <tr><td>VCC</td><td><span class="pin g">5V</span></td></tr>
+              <tr><td>OUT</td><td><span class="pin b">GPIO 13</span></td></tr>
+              <tr><td>GND</td><td><span class="pin r">GND</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted);margin-top:.4rem">Adjust the two potentiometers: <strong>left</strong> = sensitivity (range), <strong>right</strong> = hold time (1–200 sec).</p>
+      </div>
+      <div>
+        <div class="code-block">
+          <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">pir_motion.ino</span></div>
+          <pre><span class="pp">#define</span> PIR <span class="num">13</span>
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  Serial.<span class="fn">begin</span>(<span class="num">115200</span>);
+  pinMode(PIR, INPUT);
+  Serial.<span class="fn">println</span>(<span class="str">"Waiting 30s calibration..."</span>);
+  delay(<span class="num">30000</span>);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">if</span>(digitalRead(PIR) == HIGH) {
+    Serial.<span class="fn">println</span>(<span class="str">"⚠️ MOTION DETECTED!"</span>);
+    delay(<span class="num">1000</span>);
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="p3c">
+    <div class="sh"><span class="sh-icon">🌱</span> Soil Moisture Sensor</div>
+    <div class="proj-body" style="padding:0;gap:1.2rem;margin-bottom:1.2rem">
+      <div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Soil Sensor Pin</th><th>ESP32-CAM</th></tr></thead>
+            <tbody>
+              <tr><td>VCC</td><td><span class="pin g">3.3V</span></td></tr>
+              <tr><td>GND</td><td><span class="pin r">GND</span></td></tr>
+              <tr><td>A0 (Analog)</td><td><span class="pin o">GPIO 34</span></td></tr>
+              <tr><td>D0 (Digital)</td><td><span class="pin b">GPIO 13</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted);margin-top:.4rem">ADC thresholds: <strong>&gt;2500</strong> = Dry | <strong>1500–2500</strong> = Moist | <strong>&lt;1500</strong> = Wet</p>
+      </div>
+      <div>
+        <div class="code-block">
+          <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">soil_sensor.ino</span></div>
+          <pre><span class="pp">#define</span> SOIL_A <span class="num">34</span>
+
+<span class="kw">void</span> <span class="fn">setup</span>() { Serial.<span class="fn">begin</span>(<span class="num">115200</span>); }
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">int</span> val = analogRead(SOIL_A);
+  String status = (val > <span class="num">2500</span>) ? <span class="str">"DRY 🏜️"</span>
+                : (val > <span class="num">1500</span>) ? <span class="str">"MOIST 🌿"</span>
+                :                  <span class="str">"WET 💧"</span>;
+  Serial.<span class="fn">printf</span>(<span class="str">"Soil: %d → %s\n"</span>, val, status.c_str());
+  delay(<span class="num">1000</span>);
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="sh"><span class="sh-icon">🌧️</span> Rain Sensor</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Rain Sensor Pin</th><th>ESP32-CAM</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>VCC</td><td><span class="pin g">3.3V</span></td><td>Power the comparator board</td></tr>
+          <tr><td>GND</td><td><span class="pin r">GND</span></td><td></td></tr>
+          <tr><td>A0</td><td><span class="pin o">GPIO 34</span></td><td>Analog: 0 = wet, 4095 = dry</td></tr>
+          <tr><td>D0</td><td><span class="pin b">GPIO 13</span></td><td>Digital: LOW when rain detected</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec alt" id="p3d">
+    <div class="sh"><span class="sh-icon">💨</span> Gas Sensor (MQ-2/MQ-135)</div>
+    <div class="proj-body" style="padding:0;gap:1.2rem;margin-bottom:1.2rem">
+      <div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Gas Sensor Pin</th><th>ESP32-CAM</th></tr></thead>
+            <tbody>
+              <tr><td>VCC</td><td><span class="pin g">5V</span></td></tr>
+              <tr><td>GND</td><td><span class="pin r">GND</span></td></tr>
+              <tr><td>A0</td><td><span class="pin o">GPIO 34</span></td></tr>
+              <tr><td>D0</td><td><span class="pin b">GPIO 13</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="al warn">⚠️ <div>Allow <strong>24–48 hours preheat</strong> on first use for accurate calibration readings.</div></div>
+      </div>
+      <div>
+        <div class="code-block">
+          <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">gas_sensor.ino</span></div>
+          <pre><span class="pp">#define</span> GAS_PIN <span class="num">34</span>
+<span class="pp">#define</span> THRESHOLD <span class="num">1500</span>
+
+<span class="kw">void</span> <span class="fn">setup</span>() { Serial.<span class="fn">begin</span>(<span class="num">115200</span>); }
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">int</span> level = analogRead(GAS_PIN);
+  Serial.<span class="fn">printf</span>(<span class="str">"Gas level: %d\n"</span>, level);
+  <span class="kw">if</span>(level > THRESHOLD)
+    Serial.<span class="fn">println</span>(<span class="str">"⚠️ ALERT: Gas leakage!"</span>);
+  delay(<span class="num">500</span>);
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="sh"><span class="sh-icon">🔥</span> Flame Sensor</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Flame Sensor Pin</th><th>ESP32-CAM</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>VCC</td><td><span class="pin g">3.3V</span></td><td></td></tr>
+          <tr><td>GND</td><td><span class="pin r">GND</span></td><td></td></tr>
+          <tr><td>A0</td><td><span class="pin o">GPIO 34</span></td><td>Analog intensity</td></tr>
+          <tr><td>D0</td><td><span class="pin b">GPIO 13</span></td><td>LOW = flame detected</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="al danger">🔥 <div>Detection range: <strong>20–100 cm</strong> for open flames. Keep the sensor away from hot surfaces during testing. The D0 threshold can be adjusted using the onboard potentiometer.</div></div>
+  </div>
+</div>
+
+<!-- ===== PART 4: ACTUATORS ===== -->
+<div id="p4">
+  <div class="ph c4">
+    <div class="part-badge">⚙️ Part 4 of 8</div>
+    <h1>Actuators <em>Complete Guide</em></h1>
+    <p class="ph-sub">Wiring and code for Servo Motor, Stepper Motor, Relay Module, RGB LED and Buzzer.</p>
+  </div>
+
+  <div class="sec" id="p4a">
+    <div class="sh"><span class="sh-icon">🦾</span> SG90 Servo Motor</div>
+    <div class="proj-body" style="padding:0;gap:1.2rem;margin-bottom:1rem">
+      <div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Servo Wire</th><th>ESP32-CAM</th></tr></thead>
+            <tbody>
+              <tr><td>Red (VCC)</td><td><span class="pin g">5V</span></td></tr>
+              <tr><td>Brown (GND)</td><td><span class="pin r">GND</span></td></tr>
+              <tr><td>Orange (Signal)</td><td><span class="pin b">GPIO 12</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted);margin-top:.5rem">Range: <strong>0° to 180°</strong>. PWM signal: 50Hz, 1ms (0°) to 2ms (180°) pulse width.</p>
+        <div class="al ok">📦 <div>Requires: <strong>ESP32Servo library</strong> — install via Library Manager.</div></div>
+      </div>
+      <div>
+        <div class="code-block">
+          <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">servo_sweep.ino</span></div>
+          <pre><span class="pp">#include</span> <span class="str">&lt;ESP32Servo.h&gt;</span>
+Servo myServo;
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  myServo.<span class="fn">attach</span>(<span class="num">12</span>);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="cm">// Sweep 0° to 180°</span>
+  <span class="kw">for</span>(<span class="kw">int</span> pos=<span class="num">0</span>; pos&lt;=<span class="num">180</span>; pos++) {
+    myServo.<span class="fn">write</span>(pos);
+    delay(<span class="num">15</span>);
+  }
+  <span class="cm">// Sweep back 180° to 0°</span>
+  <span class="kw">for</span>(<span class="kw">int</span> pos=<span class="num">180</span>; pos&gt;=<span class="num">0</span>; pos--) {
+    myServo.<span class="fn">write</span>(pos);
+    delay(<span class="num">15</span>);
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec alt" id="p4b">
+    <div class="sh"><span class="sh-icon">⚙️</span> 28BYJ-48 Stepper Motor + ULN2003 Driver</div>
+    <div class="proj-body" style="padding:0;gap:1.2rem;margin-bottom:1rem">
+      <div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>ULN2003 Pin</th><th>ESP32-CAM</th></tr></thead>
+            <tbody>
+              <tr><td>IN1</td><td><span class="pin b">GPIO 12</span></td></tr>
+              <tr><td>IN2</td><td><span class="pin b">GPIO 13</span></td></tr>
+              <tr><td>IN3</td><td><span class="pin b">GPIO 14</span></td></tr>
+              <tr><td>IN4</td><td><span class="pin b">GPIO 15</span></td></tr>
+              <tr><td>VCC (+)</td><td><span class="pin g">5V</span></td></tr>
+              <tr><td>GND (−)</td><td><span class="pin r">GND</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted);margin-top:.5rem">Specs: 5V, 64 steps/rev (with 1/64 gear ratio = 4096 steps/full revolution), 5–12 RPM.</p>
+      </div>
+      <div>
+        <div class="code-block">
+          <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">stepper.ino</span></div>
+          <pre><span class="pp">#include</span> <span class="str">&lt;Stepper.h&gt;</span>
+<span class="pp">#define</span> STEPS <span class="num">2048</span>
+Stepper stepper(STEPS, <span class="num">12</span>, <span class="num">14</span>, <span class="num">13</span>, <span class="num">15</span>);
+<span class="cm">// Note: cross-wire IN1,IN3,IN2,IN4 for smooth operation</span>
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  stepper.<span class="fn">setSpeed</span>(<span class="num">10</span>); <span class="cm">// RPM</span>
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  stepper.<span class="fn">step</span>(<span class="num">2048</span>);  <span class="cm">// One full revolution CW</span>
+  delay(<span class="num">500</span>);
+  stepper.<span class="fn">step</span>(-<span class="num">2048</span>); <span class="cm">// One full revolution CCW</span>
+  delay(<span class="num">500</span>);
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="p4c">
+    <div class="sh"><span class="sh-icon">🔁</span> 5V Relay Module</div>
+    <div class="proj-body" style="padding:0;gap:1.2rem;margin-bottom:1rem">
+      <div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>Relay Pin</th><th>ESP32-CAM</th></tr></thead>
+            <tbody>
+              <tr><td>VCC</td><td><span class="pin g">5V</span></td></tr>
+              <tr><td>GND</td><td><span class="pin r">GND</span></td></tr>
+              <tr><td>IN (Signal)</td><td><span class="pin b">GPIO 12</span></td></tr>
+              <tr><td>COM</td><td>Load common wire</td></tr>
+              <tr><td>NO</td><td>Normally Open (connect for default OFF)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="al warn">⚠️ <div>When switching AC mains: <strong>never touch live terminals</strong>. The relay supports up to 10A / 250VAC. Keep ESP32-CAM connections on the low-voltage side only.</div></div>
+      </div>
+      <div>
+        <div class="code-block">
+          <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">relay.ino</span></div>
+          <pre><span class="pp">#define</span> RELAY <span class="num">12</span>
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  pinMode(RELAY, OUTPUT);
+  digitalWrite(RELAY, HIGH); <span class="cm">// Start OFF (active LOW)</span>
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  digitalWrite(RELAY, LOW);  <span class="cm">// Turn ON</span>
+  delay(<span class="num">2000</span>);
+  digitalWrite(RELAY, HIGH); <span class="cm">// Turn OFF</span>
+  delay(<span class="num">2000</span>);
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec alt" id="p4d">
+    <div class="sh"><span class="sh-icon">🌈</span> RGB LED Module &amp; Buzzer</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Component Pin</th><th>ESP32-CAM</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>RGB — R</td><td><span class="pin r">GPIO 12</span></td><td>PWM via analogWrite()</td></tr>
+          <tr><td>RGB — G</td><td><span class="pin g">GPIO 13</span></td><td>PWM via analogWrite()</td></tr>
+          <tr><td>RGB — B</td><td><span class="pin b">GPIO 14</span></td><td>PWM via analogWrite()</td></tr>
+          <tr><td>RGB — GND</td><td><span class="pin r">GND</span></td><td>Common cathode module</td></tr>
+          <tr><td>Buzzer — S</td><td><span class="pin b">GPIO 15</span></td><td>Active buzzer: HIGH = sound</td></tr>
+          <tr><td>Buzzer — GND</td><td><span class="pin r">GND</span></td><td></td></tr>
+          <tr><td>Buzzer — VCC</td><td><span class="pin g">3.3V</span></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code-block">
+      <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">rgb_color.ino</span></div>
+      <pre><span class="pp">#define</span> R_PIN <span class="num">12</span>
+<span class="pp">#define</span> G_PIN <span class="num">13</span>
+<span class="pp">#define</span> B_PIN <span class="num">14</span>
+
+<span class="kw">void</span> <span class="fn">setColor</span>(<span class="kw">int</span> r, <span class="kw">int</span> g, <span class="kw">int</span> b) {
+  analogWrite(R_PIN, r);
+  analogWrite(G_PIN, g);
+  analogWrite(B_PIN, b);
+}
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  pinMode(R_PIN, OUTPUT);
+  pinMode(G_PIN, OUTPUT);
+  pinMode(B_PIN, OUTPUT);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="fn">setColor</span>(<span class="num">255</span>, <span class="num">0</span>, <span class="num">0</span>);   delay(<span class="num">1000</span>); <span class="cm">// Red</span>
+  <span class="fn">setColor</span>(<span class="num">0</span>, <span class="num">255</span>, <span class="num">0</span>);   delay(<span class="num">1000</span>); <span class="cm">// Green</span>
+  <span class="fn">setColor</span>(<span class="num">0</span>, <span class="num">0</span>, <span class="num">255</span>);   delay(<span class="num">1000</span>); <span class="cm">// Blue</span>
+  <span class="fn">setColor</span>(<span class="num">255</span>, <span class="num">255</span>, <span class="num">0</span>); delay(<span class="num">1000</span>); <span class="cm">// Yellow</span>
+  <span class="fn">setColor</span>(<span class="num">255</span>, <span class="num">0</span>, <span class="num">255</span>); delay(<span class="num">1000</span>); <span class="cm">// Magenta</span>
+}</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PART 5: DISPLAY & INPUT ===== -->
+<div id="p5">
+  <div class="ph c5">
+    <div class="part-badge">🖥️ Part 5 of 8</div>
+    <h1>Display &amp; <em>Input Modules</em></h1>
+    <p class="ph-sub">128×64 OLED display, RFID access control module and push button wiring with debounce.</p>
+  </div>
+
+  <div class="sec" id="p5a">
+    <div class="sh"><span class="sh-icon">🖥️</span> 128×64 OLED Display (I2C / SSD1306)</div>
+    <div class="proj-body" style="padding:0;gap:1.2rem;margin-bottom:1rem">
+      <div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>OLED Pin</th><th>ESP32-CAM</th></tr></thead>
+            <tbody>
+              <tr><td>VCC</td><td><span class="pin g">3.3V</span></td></tr>
+              <tr><td>GND</td><td><span class="pin r">GND</span></td></tr>
+              <tr><td>SCL</td><td><span class="pin b">GPIO 14</span></td></tr>
+              <tr><td>SDA</td><td><span class="pin b">GPIO 15</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="al ok">📦 <div>Requires: <strong>Adafruit SSD1306</strong> + <strong>Adafruit GFX Library</strong>. I2C address: <strong>0x3C</strong>.</div></div>
+      </div>
+      <div>
+        <div class="code-block">
+          <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">oled_display.ino</span></div>
+          <pre><span class="pp">#include</span> <span class="str">&lt;Wire.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;Adafruit_GFX.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;Adafruit_SSD1306.h&gt;</span>
+Adafruit_SSD1306 display(<span class="num">128</span>, <span class="num">64</span>, &Wire, -<span class="num">1</span>);
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  Wire.<span class="fn">begin</span>(<span class="num">15</span>, <span class="num">14</span>);
+  display.<span class="fn">begin</span>(SSD1306_SWITCHCAPVCC, <span class="num">0x3C</span>);
+  display.<span class="fn">clearDisplay</span>();
+  display.<span class="fn">setTextSize</span>(<span class="num">1</span>);
+  display.<span class="fn">setTextColor</span>(WHITE);
+  display.<span class="fn">setCursor</span>(<span class="num">0</span>, <span class="num">0</span>);
+  display.<span class="fn">println</span>(<span class="str">"Smart IoT & AI Kit"</span>);
+  display.<span class="fn">println</span>(<span class="str">"Temp: 28.5C"</span>);
+  display.<span class="fn">println</span>(<span class="str">"Humidity: 65%"</span>);
+  display.<span class="fn">display</span>();
+}
+<span class="kw">void</span> <span class="fn">loop</span>() {}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec alt" id="p5b">
+    <div class="sh"><span class="sh-icon">🔑</span> RFID Module (RC522 / MFRC522)</div>
+    <div class="proj-body" style="padding:0;gap:1.2rem;margin-bottom:1rem">
+      <div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>RC522 Pin</th><th>ESP32-CAM</th></tr></thead>
+            <tbody>
+              <tr><td>VCC (3.3V)</td><td><span class="pin g">3.3V</span></td></tr>
+              <tr><td>GND</td><td><span class="pin r">GND</span></td></tr>
+              <tr><td>RST</td><td><span class="pin b">GPIO 15</span></td></tr>
+              <tr><td>SDA (SS)</td><td><span class="pin b">GPIO 13</span></td></tr>
+              <tr><td>SCK</td><td><span class="pin p">GPIO 14</span></td></tr>
+              <tr><td>MOSI</td><td><span class="pin p">GPIO 12</span></td></tr>
+              <tr><td>MISO</td><td><span class="pin p">GPIO 2</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="al warn">⚠️ <div>RFID module is <strong>3.3V only</strong> — never connect to 5V. Uses SPI interface.</div></div>
+        <div class="al ok">📦 <div>Requires: <strong>MFRC522 library</strong> by GithubCommunity.</div></div>
+      </div>
+      <div>
+        <div class="code-block">
+          <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">rfid_scanner.ino</span></div>
+          <pre><span class="pp">#include</span> <span class="str">&lt;SPI.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;MFRC522.h&gt;</span>
+<span class="pp">#define</span> SS_PIN  <span class="num">13</span>
+<span class="pp">#define</span> RST_PIN <span class="num">15</span>
+MFRC522 rfid(SS_PIN, RST_PIN);
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  Serial.<span class="fn">begin</span>(<span class="num">115200</span>);
+  SPI.<span class="fn">begin</span>(<span class="num">14</span>, <span class="num">2</span>, <span class="num">12</span>, <span class="num">13</span>); <span class="cm">// SCK,MISO,MOSI,SS</span>
+  rfid.<span class="fn">PCD_Init</span>();
+  Serial.<span class="fn">println</span>(<span class="str">"Scan RFID card..."</span>);
+}
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">if</span>(!rfid.<span class="fn">PICC_IsNewCardPresent</span>()) <span class="kw">return</span>;
+  <span class="kw">if</span>(!rfid.<span class="fn">PICC_ReadCardSerial</span>())  <span class="kw">return</span>;
+  Serial.<span class="fn">print</span>(<span class="str">"UID: "</span>);
+  <span class="kw">for</span>(<span class="kw">byte</span> i=<span class="num">0</span>; i&lt;rfid.uid.size; i++)
+    Serial.<span class="fn">printf</span>(<span class="str">"%02X "</span>, rfid.uid.uidByte[i]);
+  Serial.<span class="fn">println</span>();
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="p5c">
+    <div class="sh"><span class="sh-icon">🔘</span> Push Button with Debounce</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Button Pin</th><th>ESP32-CAM</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Pin 1</td><td><span class="pin b">GPIO 13</span></td><td>Signal pin</td></tr>
+          <tr><td>Pin 2</td><td><span class="pin r">GND</span></td><td>Other side of button</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code-block">
+      <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">button_debounce.ino</span></div>
+      <pre><span class="pp">#define</span> BTN <span class="num">13</span>
+<span class="kw">bool</span> lastState = HIGH, ledState = <span class="kw">false</span>;
+<span class="kw">unsigned long</span> lastDebounce = <span class="num">0</span>;
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  pinMode(BTN, INPUT_PULLUP);  <span class="cm">// Use internal pull-up</span>
+  pinMode(<span class="num">4</span>, OUTPUT);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">bool</span> reading = digitalRead(BTN);
+  <span class="kw">if</span>(reading != lastState) lastDebounce = millis();
+  <span class="kw">if</span>(millis() - lastDebounce > <span class="num">50</span>) { <span class="cm">// 50ms debounce</span>
+    <span class="kw">if</span>(reading == LOW) {  <span class="cm">// Button pressed</span>
+      ledState = !ledState;
+      digitalWrite(<span class="num">4</span>, ledState);
+    }
+  }
+  lastState = reading;
+}</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PART 6: IOT PROJECTS ===== -->
+<div id="p6">
+  <div class="ph c6">
+    <div class="part-badge">📡 Part 6 of 8</div>
+    <h1>IoT <em>Projects 1–5</em></h1>
+    <p class="ph-sub">Complete hands-on IoT projects using Wi-Fi, sensors and cloud connectivity with the ESP32-CAM.</p>
+  </div>
+
+  <!-- Project 1 -->
+  <div class="sec" id="j1">
+    <div class="proj-card">
+      <div class="proj-hdr" style="background:linear-gradient(90deg,rgba(13,27,62,.07),#fff)">
+        <div class="proj-ico" style="background:#0d1b3e;color:#00d4ff">📹</div>
+        <div class="proj-meta">
+          <div class="lbl">Project 1</div>
+          <h3>Smart Doorbell with Video Stream</h3>
+          <div class="proj-tags">
+            <span class="tag" style="background:#e0f2fe;color:#0369a1">Wi-Fi</span>
+            <span class="tag" style="background:#f0fdf4;color:#166534">Camera</span>
+            <span class="tag" style="background:#fef9c3;color:#713f12">WebServer</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Component</th><th>ESP32-CAM</th></tr></thead><tbody><tr><td>Buzzer Signal</td><td>GPIO 15</td></tr><tr><td>Motion Sensor OUT</td><td>GPIO 13</td></tr><tr><td>LED Indicator</td><td>GPIO 4 (Flash)</td></tr></tbody></table></div>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div class="step-body">Upload sketch → open Serial Monitor → note the IP address</div></div>
+            <div class="step"><div class="sn">2</div><div class="step-body">Open browser on same Wi-Fi network → visit <code>http://[IP]/stream</code></div></div>
+            <div class="step"><div class="sn">3</div><div class="step-body">When motion is detected, buzzer sounds and flash LED illuminates</div></div>
+            <div class="step"><div class="sn">4</div><div class="step-body">View live camera feed from anywhere on your local network</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="code-block">
+            <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">smart_doorbell.ino</span></div>
+            <pre><span class="pp">#include</span> <span class="str">"esp_camera.h"</span>
+<span class="pp">#include</span> <span class="str">&lt;WiFi.h&gt;</span>
+<span class="pp">#include</span> <span class="str">"esp_http_server.h"</span>
+<span class="pp">#define</span> BUZZER <span class="num">15</span>
+<span class="pp">#define</span> PIR    <span class="num">13</span>
+<span class="kw">const char</span>* ssid = <span class="str">"YOUR_WIFI"</span>;
+<span class="kw">const char</span>* pass = <span class="str">"YOUR_PASS"</span>;
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  Serial.<span class="fn">begin</span>(<span class="num">115200</span>);
+  pinMode(BUZZER, OUTPUT);
+  pinMode(PIR, INPUT);
+  <span class="fn">initCamera</span>();        <span class="cm">// AI Thinker config</span>
+  WiFi.<span class="fn">begin</span>(ssid, pass);
+  <span class="kw">while</span>(WiFi.<span class="fn">status</span>()!=WL_CONNECTED) delay(<span class="num">500</span>);
+  Serial.<span class="fn">println</span>(WiFi.<span class="fn">localIP</span>());
+  <span class="fn">startStreamServer</span>(); <span class="cm">// Start camera stream</span>
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">if</span>(digitalRead(PIR)==HIGH) {
+    digitalWrite(BUZZER, HIGH); delay(<span class="num">500</span>);
+    digitalWrite(BUZZER, LOW);
+  }
+  delay(<span class="num">100</span>);
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 2 -->
+  <div class="sec alt" id="j2">
+    <div class="proj-card">
+      <div class="proj-hdr" style="background:linear-gradient(90deg,rgba(5,150,105,.07),#fff)">
+        <div class="proj-ico" style="background:#059669;color:#fff">🌤️</div>
+        <div class="proj-meta">
+          <div class="lbl">Project 2</div>
+          <h3>IoT Weather Station (ThingSpeak)</h3>
+          <div class="proj-tags">
+            <span class="tag" style="background:#f0fdf4;color:#166534">DHT11</span>
+            <span class="tag" style="background:#eff6ff;color:#1d4ed8">BMP280</span>
+            <span class="tag" style="background:#fef9c3;color:#713f12">ThingSpeak</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Component</th><th>ESP32-CAM</th></tr></thead><tbody><tr><td>DHT11 Data</td><td>GPIO 13</td></tr><tr><td>BMP280 SDA</td><td>GPIO 15</td></tr><tr><td>BMP280 SCL</td><td>GPIO 14</td></tr></tbody></table></div>
+          <div class="al info">☁️ <div>Create a free account at <strong>thingspeak.com</strong>. Create a Channel with 4 fields: Temperature, Humidity, Pressure, Altitude. Copy your <strong>Write API Key</strong>.</div></div>
+        </div>
+        <div>
+          <div class="code-block">
+            <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">weather_station.ino</span></div>
+            <pre><span class="pp">#include</span> <span class="str">&lt;WiFi.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;DHT.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;Adafruit_BMP280.h&gt;</span>
+<span class="kw">const char</span>* apiKey = <span class="str">"YOUR_WRITE_KEY"</span>;
+<span class="kw">const char</span>* server = <span class="str">"api.thingspeak.com"</span>;
+DHT dht(<span class="num">13</span>, DHT11);
+Adafruit_BMP280 bmp;
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">float</span> t = dht.<span class="fn">readTemperature</span>();
+  <span class="kw">float</span> h = dht.<span class="fn">readHumidity</span>();
+  <span class="kw">float</span> p = bmp.<span class="fn">readPressure</span>()/<span class="num">100.0</span>;
+  WiFiClient c;
+  c.<span class="fn">connect</span>(server, <span class="num">80</span>);
+  String data = <span class="str">"field1="</span>+String(t)+
+    <span class="str">"&field2="</span>+String(h)+<span class="str">"&field3="</span>+String(p);
+  c.<span class="fn">print</span>(<span class="str">"GET /update?api_key="</span>+String(apiKey)+
+    <span class="str">"&"</span>+data+<span class="str">" HTTP/1.1\r\nHost: "</span>+
+    server+<span class="str">"\r\n\r\n"</span>);
+  delay(<span class="num">20000</span>); <span class="cm">// 20s ThingSpeak limit</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 3 -->
+  <div class="sec" id="j3">
+    <div class="proj-card">
+      <div class="proj-hdr" style="background:linear-gradient(90deg,rgba(124,58,237,.07),#fff)">
+        <div class="proj-ico" style="background:#7c3aed;color:#fff">🔐</div>
+        <div class="proj-meta">
+          <div class="lbl">Project 3</div>
+          <h3>RFID Access Control System</h3>
+          <div class="proj-tags">
+            <span class="tag" style="background:#ede9fe;color:#4c1d95">RFID</span>
+            <span class="tag" style="background:#fef2f2;color:#991b1b">Relay</span>
+            <span class="tag" style="background:#f0fdf4;color:#166534">Buzzer</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Component</th><th>ESP32-CAM</th></tr></thead><tbody><tr><td>RC522 SDA</td><td>GPIO 13</td></tr><tr><td>RC522 SCK</td><td>GPIO 14</td></tr><tr><td>Relay Signal</td><td>GPIO 12</td></tr><tr><td>Buzzer</td><td>GPIO 15</td></tr></tbody></table></div>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div class="step-body">Scan your card and note the UID from Serial Monitor</div></div>
+            <div class="step"><div class="sn">2</div><div class="step-body">Add the UID to the <code>authorizedUIDs</code> array in the sketch</div></div>
+            <div class="step"><div class="sn">3</div><div class="step-body">Authorized card → relay activates (door unlocks) + green LED</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="code-block">
+            <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">rfid_access.ino</span></div>
+            <pre><span class="pp">#include</span> <span class="str">&lt;SPI.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;MFRC522.h&gt;</span>
+MFRC522 rfid(<span class="num">13</span>, <span class="num">15</span>); <span class="cm">// SS, RST</span>
+String authorizedUID = <span class="str">"AB 12 34 CD"</span>;
+<span class="pp">#define</span> RELAY <span class="num">12</span>
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">if</span>(!rfid.<span class="fn">PICC_IsNewCardPresent</span>()) <span class="kw">return</span>;
+  <span class="kw">if</span>(!rfid.<span class="fn">PICC_ReadCardSerial</span>())  <span class="kw">return</span>;
+  String uid = <span class="str">""</span>;
+  <span class="kw">for</span>(<span class="kw">byte</span> i=<span class="num">0</span>; i&lt;rfid.uid.size; i++)
+    uid += String(rfid.uid.uidByte[i], HEX)+<span class="str">" "</span>;
+  uid.<span class="fn">trim</span>(); uid.<span class="fn">toUpperCase</span>();
+  <span class="kw">if</span>(uid == authorizedUID) {
+    Serial.<span class="fn">println</span>(<span class="str">"✅ ACCESS GRANTED"</span>);
+    digitalWrite(RELAY, LOW);  <span class="cm">// Unlock</span>
+    delay(<span class="num">3000</span>);
+    digitalWrite(RELAY, HIGH); <span class="cm">// Re-lock</span>
+  } <span class="kw">else</span> Serial.<span class="fn">println</span>(<span class="str">"❌ ACCESS DENIED"</span>);
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 4 -->
+  <div class="sec alt" id="j4">
+    <div class="proj-card">
+      <div class="proj-hdr" style="background:linear-gradient(90deg,rgba(5,150,105,.07),#fff)">
+        <div class="proj-ico" style="background:#166534;color:#4ade80">🌱</div>
+        <div class="proj-meta">
+          <div class="lbl">Project 4</div>
+          <h3>Smart Plant Monitor &amp; Auto Watering</h3>
+          <div class="proj-tags">
+            <span class="tag" style="background:#f0fdf4;color:#166534">Soil Sensor</span>
+            <span class="tag" style="background:#fef2f2;color:#991b1b">Relay</span>
+            <span class="tag" style="background:#eff6ff;color:#1d4ed8">OLED</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Component</th><th>ESP32-CAM</th></tr></thead><tbody><tr><td>Soil Sensor A0</td><td>GPIO 34</td></tr><tr><td>DHT11 Data</td><td>GPIO 13</td></tr><tr><td>Relay (Pump)</td><td>GPIO 12</td></tr><tr><td>OLED SDA/SCL</td><td>GPIO 15/14</td></tr></tbody></table></div>
+          <p style="font-size:.78rem;color:var(--muted);margin-top:.5rem">The relay controls a small <strong>5V submersible pump</strong>. When soil moisture drops below the dry threshold, the pump auto-activates for 5 seconds.</p>
+        </div>
+        <div>
+          <div class="code-block">
+            <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">plant_monitor.ino</span></div>
+            <pre><span class="pp">#define</span> SOIL  <span class="num">34</span>
+<span class="pp">#define</span> PUMP  <span class="num">12</span>
+<span class="pp">#define</span> DRY_THRESHOLD <span class="num">2500</span>
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">int</span> moisture = analogRead(SOIL);
+  String status;
+  <span class="kw">if</span>(moisture > DRY_THRESHOLD) {
+    status = <span class="str">"DRY - Watering!"</span>;
+    digitalWrite(PUMP, LOW);  <span class="cm">// Pump ON</span>
+    delay(<span class="num">5000</span>);
+    digitalWrite(PUMP, HIGH); <span class="cm">// Pump OFF</span>
+  } <span class="kw">else</span> {
+    status = <span class="str">"Soil OK :)"</span>;
+  }
+  <span class="cm">// Update OLED display with status...</span>
+  delay(<span class="num">10000</span>); <span class="cm">// Check every 10s</span>
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 5 -->
+  <div class="sec" id="j5">
+    <div class="proj-card">
+      <div class="proj-hdr" style="background:linear-gradient(90deg,rgba(194,65,12,.07),#fff)">
+        <div class="proj-ico" style="background:#c2410c;color:#fff">🚨</div>
+        <div class="proj-meta">
+          <div class="lbl">Project 5</div>
+          <h3>Gas Leak &amp; Fire Alert System</h3>
+          <div class="proj-tags">
+            <span class="tag" style="background:#fff7ed;color:#c2410c">Gas Sensor</span>
+            <span class="tag" style="background:#fff1f2;color:#be123c">Flame Sensor</span>
+            <span class="tag" style="background:#fef9c3;color:#713f12">Buzzer</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Component</th><th>ESP32-CAM</th></tr></thead><tbody><tr><td>Gas Sensor A0</td><td>GPIO 34</td></tr><tr><td>Flame Sensor D0</td><td>GPIO 13</td></tr><tr><td>Buzzer</td><td>GPIO 15</td></tr><tr><td>Red LED</td><td>GPIO 12</td></tr></tbody></table></div>
+          <div class="al danger">🚨 <div>This project is for <strong>educational purposes</strong>. Never rely on this circuit as your sole safety system for real environments.</div></div>
+        </div>
+        <div>
+          <div class="code-block">
+            <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">fire_gas_alarm.ino</span></div>
+            <pre><span class="pp">#define</span> GAS_A  <span class="num">34</span>
+<span class="pp">#define</span> FLAME  <span class="num">13</span>
+<span class="pp">#define</span> BUZZER <span class="num">15</span>
+<span class="pp">#define</span> LED    <span class="num">12</span>
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">int</span> gas = analogRead(GAS_A);
+  <span class="kw">bool</span> fire = (digitalRead(FLAME)==LOW);
+  <span class="kw">bool</span> alert = (gas > <span class="num">1500</span>) || fire;
+  
+  <span class="kw">if</span>(alert) {
+    Serial.<span class="fn">println</span>(<span class="str">"⚠️ ALARM! Gas:"</span>+String(gas)+
+                  <span class="str">" Fire:"</span>+String(fire));
+    <span class="kw">for</span>(<span class="kw">int</span> i=<span class="num">0</span>; i&lt;<span class="num">5</span>; i++) {
+      digitalWrite(BUZZER, HIGH);
+      digitalWrite(LED, HIGH);
+      delay(<span class="num">200</span>);
+      digitalWrite(BUZZER, LOW);
+      digitalWrite(LED, LOW);
+      delay(<span class="num">200</span>);
+    }
+  }
+  delay(<span class="num">500</span>);
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PART 7: AI PROJECTS ===== -->
+<div id="p7">
+  <div class="ph c8">
+    <div class="part-badge">🧠 Part 7 of 8</div>
+    <h1>AI Vision <em>Projects with ESP32-CAM</em></h1>
+    <p class="ph-sub">On-device face detection, TensorFlow Lite inference, Edge Impulse machine learning models, FOMO object detection, anomaly detection — all running locally on the ESP32-CAM. No GPU, no cloud required.</p>
+  </div>
+
+  <div class="sec" id="j6">
+    <div class="sh"><span class="sh-icon">👤</span> AI Project 1 — Face Detection &amp; Recognition</div>
+    <div class="al info">🧠 <div>The ESP32-CAM has <strong>built-in AI face detection</strong> powered by the Espressif ESP-WHO framework. No cloud service required — inference runs entirely on the chip at ~7 FPS.</div></div>
+    <div class="steps">
+      <div class="step"><div class="sn">1</div><div class="step-body">In Arduino IDE: <strong>File → Examples → ESP32 → Camera → CameraWebServer</strong></div></div>
+      <div class="step"><div class="sn">2</div><div class="step-body">In the sketch, uncomment: <code>#define CAMERA_MODEL_AI_THINKER</code> and set your Wi-Fi credentials</div></div>
+      <div class="step"><div class="sn">3</div><div class="step-body">Upload sketch → open Serial Monitor → note the camera server IP address</div></div>
+      <div class="step"><div class="sn">4</div><div class="step-body">Open browser → navigate to <code>http://[IP]</code> → click <strong>Start Stream</strong></div></div>
+      <div class="step"><div class="sn">5</div><div class="step-body">Scroll down in the camera UI → enable <strong>Face Detection</strong> toggle → faces are boxed in real-time</div></div>
+      <div class="step"><div class="sn">6</div><div class="step-body">Enable <strong>Face Recognition</strong> → click <strong>Enroll Face</strong> while facing the camera to register known faces</div></div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="c-ico">⚡</div><h4>240 MHz Inference</h4><p>Face detection model runs fully on-chip. No latency from cloud API calls.</p></div>
+      <div class="card"><div class="c-ico">👥</div><h4>Multi-face</h4><p>Can detect multiple faces simultaneously in the frame.</p></div>
+      <div class="card"><div class="c-ico">💾</div><h4>Face Database</h4><p>Enroll up to 7 faces stored in PSRAM for recognition.</p></div>
+      <div class="card"><div class="c-ico">🔗</div><h4>Trigger Actions</h4><p>Recognized face ID can trigger relay, buzzer or IoT notifications.</p></div>
+    </div>
+  </div>
+
+  <div class="sec alt" id="j7">
+    <div class="sh"><span class="sh-icon">🔍</span> AI Project 2 — Object Detection with TensorFlow Lite</div>
+    <div class="al info">📦 <div>Requires installing <strong>TensorFlowLite_ESP32 library</strong> from Library Manager. Uses a quantized MobileNet model (person detection) compiled for ESP32.</div></div>
+    <div class="code-block">
+      <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">person_detection.ino</span></div>
+      <pre><span class="pp">#include</span> <span class="str">&lt;TensorFlowLite_ESP32.h&gt;</span>
+<span class="pp">#include</span> <span class="str">"person_detect_model_data.h"</span>
+<span class="pp">#include</span> <span class="str">"esp_camera.h"</span>
+
+<span class="cm">// Setup TFLite interpreter, model, and tensor arena</span>
+<span class="kw">const int</span> kTensorArenaSize = <span class="num">70</span> * <span class="num">1024</span>;
+<span class="kw">uint8_t</span> tensor_arena[kTensorArenaSize];
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  camera_fb_t* fb = <span class="fn">esp_camera_fb_get</span>();
+  <span class="kw">if</span>(!fb) <span class="kw">return</span>;
+  
+  <span class="cm">// Run inference on captured frame</span>
+  TfLiteStatus invoke_status = interpreter-&gt;<span class="fn">Invoke</span>();
+  
+  <span class="cm">// Read output: person score vs no-person score</span>
+  <span class="kw">int8_t</span>* output = interpreter-&gt;output(<span class="num">0</span>)-&gt;data.int8;
+  <span class="kw">bool</span> person = output[<span class="num">1</span>] > output[<span class="num">0</span>];
+  
+  Serial.<span class="fn">println</span>(person ? <span class="str">"👤 Person detected!"</span>
+                        : <span class="str">"No person in frame"</span>);
+  <span class="fn">esp_camera_fb_return</span>(fb);
+}</pre>
+    </div>
+    <div class="al warn">⚠️ <div>TFLite inference uses significant RAM. Disable Wi-Fi during inference if you encounter memory errors: <code>WiFi.mode(WIFI_OFF)</code> before running the model.</div></div>
+  </div>
+
+  <div class="sec" id="j8">
+    <div class="sh"><span class="sh-icon">📊</span> AI Project 3 — Live AI Dashboard (Camera + Sensors)</div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;max-width:800px">Combine camera streaming with real-time sensor data on a single hosted web page. The ESP32-CAM hosts the dashboard — no external server needed.</p>
+    <div class="cards">
+      <div class="card"><div class="c-ico">🌡️</div><h4>Sensor Overlay</h4><p>Temperature, humidity and pressure displayed live alongside the camera feed.</p></div>
+      <div class="card"><div class="c-ico">📸</div><h4>Snapshot Capture</h4><p>One-click JPEG snapshot saved to MicroSD or downloaded via browser.</p></div>
+      <div class="card"><div class="c-ico">🔔</div><h4>Alert Notifications</h4><p>Motion or gas alerts push a notification overlay on the dashboard page.</p></div>
+      <div class="card"><div class="c-ico">🌐</div><h4>Mobile Friendly</h4><p>Responsive layout works on phone browser — access from anywhere on your Wi-Fi.</p></div>
+    </div>
+    <div class="code-block">
+      <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">ai_dashboard_server.ino (excerpt)</span></div>
+      <pre><span class="cm">// Serve dashboard HTML with embedded camera stream</span>
+server.on(<span class="str">"/"</span>, HTTP_GET, [](){
+  String html = R<span class="str">"rawhtml(
+  &lt;html&gt;&lt;body style='font-family:sans-serif;background:#111'&gt;
+  &lt;h2 style='color:#0df'&gt;Smart IoT AI Dashboard&lt;/h2&gt;
+  &lt;img src='/stream' width='320' height='240'&gt;
+  &lt;div id='data'&gt;Loading...&lt;/div&gt;
+  &lt;script&gt;setInterval(()=&gt;{
+    fetch('/sensors').then(r=&gt;r.json())
+    .then(d=&gt;document.getElementById('data')
+    .innerHTML='Temp:'+d.t+'°C | Hum:'+d.h+'%');
+  },3000);&lt;/script&gt;
+  &lt;/body&gt;&lt;/html&gt;)rawhtml"</span>;
+  server.<span class="fn">send</span>(<span class="num">200</span>, <span class="str">"text/html"</span>, html);
+});
+
+<span class="cm">// Sensor data JSON endpoint</span>
+server.on(<span class="str">"/sensors"</span>, HTTP_GET, [](){
+  String json = <span class="str">"{\"t\":"</span>+String(temp)+
+                <span class="str">",\"h\":"</span>+String(hum)+<span class="str">"}"</span>;
+  server.<span class="fn">send</span>(<span class="num">200</span>, <span class="str">"application/json"</span>, json);
+});</pre>
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- EDGE IMPULSE INTRO -->
+  <!-- ======================================================= -->
+  <div class="sec" id="j9">
+    <div class="sh"><span class="sh-icon">🧬</span> AI Project 4 — Introduction to Edge Impulse</div>
+    <p style="font-size:.86rem;color:var(--muted);margin-bottom:1.1rem;max-width:820px;line-height:1.7"><strong style="color:var(--ink)">Edge Impulse</strong> is a free online platform that lets you train custom machine learning models on your own data and deploy them directly onto the ESP32-CAM — without writing a single line of ML code. You collect images with the camera, label them in the browser, train a model, and export a ready-to-flash Arduino library.</p>
+
+    <div class="cards">
+      <div class="card"><div class="c-ico">📷</div><h4>Collect with Camera</h4><p>Stream images directly from ESP32-CAM into Edge Impulse's data collection tool via USB Serial or Wi-Fi.</p></div>
+      <div class="card"><div class="c-ico">🏷️</div><h4>Label in Browser</h4><p>Draw bounding boxes or assign class labels using the point-and-click web labeling tool.</p></div>
+      <div class="card"><div class="c-ico">🧠</div><h4>Train in Cloud</h4><p>One-click training on Edge Impulse's GPU cluster — MobileNet, FOMO, and anomaly models all supported.</p></div>
+      <div class="card"><div class="c-ico">📦</div><h4>Deploy as Library</h4><p>Export a .zip Arduino library containing the model and inference engine — drop it into your sketch.</p></div>
+      <div class="card"><div class="c-ico">⚡</div><h4>Quantized Models</h4><p>8-bit INT8 quantized models run at ~5–15 FPS on ESP32-CAM with under 200KB RAM.</p></div>
+      <div class="card"><div class="c-ico">🆓</div><h4>Free for Makers</h4><p>Free tier supports unlimited projects with up to 20 minutes training compute per day.</p></div>
+    </div>
+
+    <div class="sh" style="margin-top:1.2rem"><span class="sh-icon">🚀</span> Edge Impulse Platform Setup</div>
+    <div class="steps">
+      <div class="step"><div class="sn">1</div><div class="step-body">Create a free account at <code>edgeimpulse.com</code> → click <strong>Create new project</strong></div></div>
+      <div class="step"><div class="sn">2</div><div class="step-body">Install the Edge Impulse CLI: open terminal → <code>npm install -g edge-impulse-cli</code> (requires Node.js 14+)</div></div>
+      <div class="step"><div class="sn">3</div><div class="step-body">Flash the ESP32-CAM with the <strong>Edge Impulse firmware</strong>: download <code>esp32-cam.flash.bat</code> from your project's <em>Devices</em> page and run it with the programming cable connected</div></div>
+      <div class="step"><div class="sn">4</div><div class="step-body">Run <code>edge-impulse-daemon</code> in terminal → log in → your ESP32-CAM appears as a connected device</div></div>
+      <div class="step"><div class="sn">5</div><div class="step-body">Go to <strong>Data Acquisition</strong> → camera feed appears live → click <strong>Start sampling</strong> to capture labeled images</div></div>
+      <div class="step"><div class="sn">6</div><div class="step-body">After collecting 50–200 images per class, go to <strong>Create Impulse</strong> → choose Image processing block + Learning block → <strong>Train</strong></div></div>
+      <div class="step"><div class="sn">7</div><div class="step-body">After training: <strong>Deployment → Arduino Library → Build</strong> → download the .zip → Arduino IDE → <em>Sketch → Include Library → Add .ZIP Library</em></div></div>
+    </div>
+    <div class="al info">💡 <div>For best results, collect images in the <strong>same lighting conditions</strong> you'll deploy in. Aim for at least <strong>60% training / 20% validation</strong> split. Edge Impulse recommends 50+ samples per class minimum.</div></div>
+
+    <div class="sh" style="margin-top:1.2rem"><span class="sh-icon">🖼️</span> Recommended Image Settings for ESP32-CAM</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Parameter</th><th>Recommended Value</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>Resolution</td><td>96×96 px</td><td>Fits in RAM; standard for MobileNet / FOMO</td></tr>
+          <tr><td>Color mode</td><td>Grayscale</td><td>3× less memory than RGB; faster inference</td></tr>
+          <tr><td>Frame format</td><td>JPEG → decode</td><td>ESP32-CAM always outputs JPEG; decode before inference</td></tr>
+          <tr><td>PSRAM</td><td>Enabled</td><td>Required for frame buffers at 96×96 and above</td></tr>
+          <tr><td>Tensor arena</td><td>81,920 bytes</td><td>Safe starting size; increase if model fails to load</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- EDGE IMPULSE: IMAGE CLASSIFICATION -->
+  <!-- ======================================================= -->
+  <div class="sec alt" id="j10">
+    <div class="proj-card">
+      <div class="proj-hdr" style="background:linear-gradient(90deg,rgba(37,99,235,.08),#fff)">
+        <div class="proj-ico" style="background:#2563eb;color:#fff">🏷️</div>
+        <div class="proj-meta">
+          <div class="lbl">AI Project 5 · Edge Impulse</div>
+          <h3>Custom Image Classifier (e.g. Mask / No-Mask)</h3>
+          <div class="proj-tags">
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8">Edge Impulse</span>
+            <span class="tag" style="background:#ede9fe;color:#4c1d95">MobileNetV2</span>
+            <span class="tag" style="background:#f0fdf4;color:#166534">Image Classification</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <p style="font-size:.8rem;color:var(--muted);margin-bottom:.75rem;line-height:1.6">Train the ESP32-CAM to classify camera images into custom categories — for example <strong>Mask / No-Mask</strong>, <strong>Open / Closed door</strong>, or any 2–5 class problem you collect data for.</p>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>Edge Impulse Settings</th><th>Value</th></tr></thead>
+              <tbody>
+                <tr><td>Input block</td><td>Image (96×96, Grayscale)</td></tr>
+                <tr><td>Processing block</td><td>Image (flatten or raw)</td></tr>
+                <tr><td>Learning block</td><td>Transfer Learning (MobileNetV2 0.35)</td></tr>
+                <tr><td>Training cycles</td><td>20–50 epochs</td></tr>
+                <tr><td>Learning rate</td><td>0.0005</td></tr>
+                <tr><td>Data augmentation</td><td>Enabled (flip, brightness)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="al ok">✅ <div>Target accuracy: <strong>&gt;85%</strong> on validation set. If below 80%, collect more data or reduce number of classes.</div></div>
+        </div>
+        <div>
+          <div class="code-block">
+            <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">ei_image_classifier.ino</span></div>
+            <pre><span class="pp">#include</span> <span class="str">&lt;your-project-name_inferencing.h&gt;</span>
+<span class="pp">#include</span> <span class="str">"esp_camera.h"</span>
+<span class="pp">#include</span> <span class="str">"img_converters.h"</span>
+
+<span class="cm">// AI Thinker camera pin config</span>
+<span class="pp">#define</span> PWDN_GPIO  <span class="num">32</span>
+<span class="pp">#define</span> RESET_GPIO <span class="num">-1</span>
+<span class="pp">#define</span> XCLK_GPIO  <span class="num">0</span>
+<span class="pp">#define</span> SIOD_GPIO  <span class="num">26</span>
+<span class="pp">#define</span> SIOC_GPIO  <span class="num">27</span>
+<span class="pp">#define</span> Y9_GPIO    <span class="num">35</span>
+<span class="pp">#define</span> Y8_GPIO    <span class="num">34</span>
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  Serial.<span class="fn">begin</span>(<span class="num">115200</span>);
+  camera_config_t config;
+  config.ledc_channel = LEDC_CHANNEL_0;
+  config.ledc_timer   = LEDC_TIMER_0;
+  config.pin_pwdn     = PWDN_GPIO;
+  config.frame_size   = FRAMESIZE_96X96;
+  config.pixel_format = PIXFORMAT_GRAYSCALE;
+  <span class="fn">esp_camera_init</span>(&config);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  camera_fb_t* fb = <span class="fn">esp_camera_fb_get</span>();
+  <span class="kw">if</span>(!fb) { delay(<span class="num">100</span>); <span class="kw">return</span>; }
+
+  <span class="cm">// Build EI signal from raw frame buffer</span>
+  ei::signal_t signal;
+  signal.total_length = EI_CLASSIFIER_INPUT_WIDTH *
+                        EI_CLASSIFIER_INPUT_HEIGHT;
+  signal.get_data = [&](size_t offset, size_t len,
+                        <span class="kw">float</span>* out) -> <span class="kw">int</span> {
+    <span class="kw">for</span>(size_t i = <span class="num">0</span>; i &lt; len; i++)
+      out[i] = fb->buf[offset+i] / <span class="num">255.0f</span>;
+    <span class="kw">return</span> <span class="num">0</span>;
+  };
+
+  ei_impulse_result_t result;
+  EI_IMPULSE_ERROR err = <span class="fn">run_classifier</span>(
+                           &signal, &result, <span class="kw">false</span>);
+  <span class="fn">esp_camera_fb_return</span>(fb);
+
+  <span class="kw">if</span>(err != EI_IMPULSE_OK) <span class="kw">return</span>;
+
+  <span class="cm">// Print top prediction</span>
+  <span class="kw">for</span>(<span class="kw">int</span> i=<span class="num">0</span>; i&lt;EI_CLASSIFIER_LABEL_COUNT; i++) {
+    Serial.<span class="fn">printf</span>(<span class="str">"%s: %.2f\n"</span>,
+      result.classification[i].label,
+      result.classification[i].value);
+  }
+  delay(<span class="num">1000</span>);
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- EDGE IMPULSE: FOMO OBJECT DETECTION -->
+  <!-- ======================================================= -->
+  <div class="sec" id="j11">
+    <div class="proj-card">
+      <div class="proj-hdr" style="background:linear-gradient(90deg,rgba(5,150,105,.08),#fff)">
+        <div class="proj-ico" style="background:#047857;color:#6ee7b7">🎯</div>
+        <div class="proj-meta">
+          <div class="lbl">AI Project 6 · Edge Impulse</div>
+          <h3>FOMO Object Detection — Count &amp; Locate Objects</h3>
+          <div class="proj-tags">
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8">Edge Impulse</span>
+            <span class="tag" style="background:#d1fae5;color:#065f46">FOMO</span>
+            <span class="tag" style="background:#fef9c3;color:#713f12">Bounding Boxes</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <p style="font-size:.8rem;color:var(--muted);margin-bottom:.75rem;line-height:1.6"><strong style="color:var(--ink)">FOMO (Faster Objects More Objects)</strong> is Edge Impulse's ultra-lightweight object detection model designed specifically for microcontrollers. It can detect and count multiple objects in a frame at ~30 FPS on ESP32-CAM using only ~50KB RAM.</p>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>Edge Impulse Settings</th><th>Value</th></tr></thead>
+              <tbody>
+                <tr><td>Input block</td><td>Image (96×96, RGB or Grayscale)</td></tr>
+                <tr><td>Processing block</td><td>Image</td></tr>
+                <tr><td>Learning block</td><td>Object Detection (FOMO)</td></tr>
+                <tr><td>Architecture</td><td>FOMO MobileNetV2 0.35</td></tr>
+                <tr><td>Labeling method</td><td>Bounding boxes (draw in browser)</td></tr>
+                <tr><td>Min samples/class</td><td>60+ images recommended</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="al warn">⚠️ <div>FOMO outputs object <strong>centroids</strong>, not full bounding boxes. It excels at counting and locating small, distinct objects (screws, coins, pills) but is not designed for overlapping objects.</div></div>
+          <div class="al ok">✅ <div>Great use cases: <strong>counting components on a workbench</strong>, detecting presence of a specific item, parking spot occupancy, bottle-cap inspection.</div></div>
+        </div>
+        <div>
+          <div class="code-block">
+            <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">ei_fomo_detect.ino</span></div>
+            <pre><span class="pp">#include</span> <span class="str">&lt;your-project-name_inferencing.h&gt;</span>
+<span class="pp">#include</span> <span class="str">"esp_camera.h"</span>
+<span class="pp">#include</span> <span class="str">"edge-impulse-sdk/dsp/image/image.hpp"</span>
+
+<span class="cm">// (camera init same as previous project)</span>
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  camera_fb_t* fb = <span class="fn">esp_camera_fb_get</span>();
+  <span class="kw">if</span>(!fb) <span class="kw">return</span>;
+
+  <span class="cm">// Convert JPEG → RGB888 → resize to 96×96</span>
+  <span class="kw">uint8_t</span>* buf = <span class="kw">new</span> <span class="kw">uint8_t</span>[<span class="num">96</span>*<span class="num">96</span>*<span class="num">3</span>];
+  <span class="fn">jpg2rgb888</span>(fb->buf, fb->len, buf, JPG_SCALE_NONE);
+  <span class="fn">esp_camera_fb_return</span>(fb);
+
+  ei::signal_t signal;
+  <span class="fn">ei_camera_cutout_get_data</span>(buf, &signal);
+
+  ei_impulse_result_t result;
+  <span class="fn">run_classifier</span>(&signal, &result, <span class="kw">false</span>);
+  <span class="kw">delete</span>[] buf;
+
+  <span class="cm">// Iterate bounding box results</span>
+  <span class="kw">uint32_t</span> count = <span class="num">0</span>;
+  <span class="kw">for</span>(<span class="kw">auto</span> bb : result.bounding_boxes) {
+    <span class="kw">if</span>(bb.value &lt; <span class="num">0.5f</span>) <span class="kw">continue</span>; <span class="cm">// confidence threshold</span>
+    count++;
+    Serial.<span class="fn">printf</span>(<span class="str">"  %s (%.0f%%) @ x:%d y:%d w:%d h:%d\n"</span>,
+      bb.label, bb.value*<span class="num">100</span>,
+      bb.x, bb.y, bb.width, bb.height);
+  }
+  Serial.<span class="fn">printf</span>(<span class="str">"Total detected: %u\n\n"</span>, count);
+  delay(<span class="num">500</span>);
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sh" style="margin-top:1.4rem"><span class="sh-icon">🔗</span> Trigger Relay Based on Object Count</div>
+    <p style="font-size:.82rem;color:var(--muted);margin-bottom:.8rem">A practical extension: activate the relay (and buzzer) when FOMO detects more than a threshold number of objects — useful for assembly-line counting or intruder object detection.</p>
+    <div class="code-block">
+      <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">fomo_relay_trigger.ino (addition)</span></div>
+      <pre><span class="pp">#define</span> RELAY  <span class="num">12</span>
+<span class="pp">#define</span> BUZZER <span class="num">15</span>
+<span class="pp">#define</span> MAX_ALLOWED <span class="num">3</span>  <span class="cm">// alert if >3 objects detected</span>
+
+<span class="cm">// Inside loop(), after counting detections:</span>
+<span class="kw">if</span>(count > MAX_ALLOWED) {
+  Serial.<span class="fn">printf</span>(<span class="str">"⚠️ ALERT: %u objects detected!\n"</span>, count);
+  digitalWrite(RELAY,  LOW);  <span class="cm">// activate relay</span>
+  digitalWrite(BUZZER, HIGH);
+  delay(<span class="num">1000</span>);
+  digitalWrite(RELAY,  HIGH);
+  digitalWrite(BUZZER, LOW);
+} <span class="kw">else</span> {
+  Serial.<span class="fn">printf</span>(<span class="str">"OK: %u object(s) in view\n"</span>, count);
+}</pre>
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- EDGE IMPULSE: VISUAL ANOMALY DETECTION -->
+  <!-- ======================================================= -->
+  <div class="sec alt" id="j12">
+    <div class="proj-card">
+      <div class="proj-hdr" style="background:linear-gradient(90deg,rgba(220,38,38,.08),#fff)">
+        <div class="proj-ico" style="background:#991b1b;color:#fca5a5">🔬</div>
+        <div class="proj-meta">
+          <div class="lbl">AI Project 7 · Edge Impulse</div>
+          <h3>Visual Anomaly Detection — Spot Defects &amp; Changes</h3>
+          <div class="proj-tags">
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8">Edge Impulse</span>
+            <span class="tag" style="background:#fef2f2;color:#991b1b">GMM Anomaly</span>
+            <span class="tag" style="background:#fef9c3;color:#713f12">Quality Control</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div>
+          <p style="font-size:.8rem;color:var(--muted);margin-bottom:.75rem;line-height:1.6">Visual anomaly detection trains only on <strong>normal / good images</strong> — no defect images needed. The model learns what "normal" looks like and flags anything that deviates. Ideal for quality inspection where defects are rare or unpredictable.</p>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>Edge Impulse Settings</th><th>Value</th></tr></thead>
+              <tbody>
+                <tr><td>Input block</td><td>Image (96×96, RGB)</td></tr>
+                <tr><td>Processing block</td><td>Image</td></tr>
+                <tr><td>Learning block</td><td>Visual Anomaly Detection (GMM)</td></tr>
+                <tr><td>Training data</td><td>Only NORMAL/GOOD images</td></tr>
+                <tr><td>Min samples</td><td>40+ good images</td></tr>
+                <tr><td>Anomaly threshold</td><td>Tune after testing (e.g. 0.3)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="al info">💡 <div>Use cases: <strong>PCB defect detection</strong>, checking if a component is missing, detecting spills or stains, monitoring for physical tampering of a device or door.</div></div>
+        </div>
+        <div>
+          <div class="code-block">
+            <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">ei_anomaly_detect.ino</span></div>
+            <pre><span class="pp">#include</span> <span class="str">&lt;your-project-name_inferencing.h&gt;</span>
+<span class="pp">#include</span> <span class="str">"esp_camera.h"</span>
+<span class="pp">#define</span> ANOMALY_THRESHOLD <span class="num">0.30f</span>
+<span class="pp">#define</span> BUZZER <span class="num">15</span>
+<span class="pp">#define</span> LED    <span class="num">4</span>
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  camera_fb_t* fb = <span class="fn">esp_camera_fb_get</span>();
+  <span class="kw">if</span>(!fb) <span class="kw">return</span>;
+
+  ei::signal_t signal;
+  <span class="cm">// (populate signal from fb->buf as shown in Project 5)</span>
+
+  ei_impulse_result_t result;
+  <span class="fn">run_classifier</span>(&signal, &result, <span class="kw">false</span>);
+  <span class="fn">esp_camera_fb_return</span>(fb);
+
+  <span class="kw">float</span> anomaly_score = result.anomaly;
+  Serial.<span class="fn">printf</span>(<span class="str">"Anomaly score: %.4f\n"</span>, anomaly_score);
+
+  <span class="kw">if</span>(anomaly_score > ANOMALY_THRESHOLD) {
+    Serial.<span class="fn">println</span>(<span class="str">"🚨 DEFECT / ANOMALY DETECTED!"</span>);
+    <span class="cm">// Flash LED and buzz to alert operator</span>
+    <span class="kw">for</span>(<span class="kw">int</span> i=<span class="num">0</span>; i&lt;<span class="num">3</span>; i++) {
+      digitalWrite(LED, HIGH);
+      digitalWrite(BUZZER, HIGH); delay(<span class="num">150</span>);
+      digitalWrite(LED, LOW);
+      digitalWrite(BUZZER, LOW);  delay(<span class="num">150</span>);
+    }
+  } <span class="kw">else</span> {
+    Serial.<span class="fn">println</span>(<span class="str">"✅ Normal — no anomaly"</span>);
+  }
+  delay(<span class="num">800</span>);
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="al warn">⚠️ <div>Anomaly threshold needs tuning per use case. In the Edge Impulse dashboard, go to <strong>Anomaly Detection → Set threshold</strong> — test with known-bad images and adjust until false positive rate is acceptable.</div></div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- AI VISION: SMART INTRUDER ALERT -->
+  <!-- ======================================================= -->
+  <div class="sec" id="j13">
+    <div class="proj-card">
+      <div class="proj-hdr" style="background:linear-gradient(90deg,rgba(124,58,237,.08),#fff)">
+        <div class="proj-ico" style="background:#4c1d95;color:#c4b5fd">🚨</div>
+        <div class="proj-meta">
+          <div class="lbl">AI Project 8 · Full Build</div>
+          <h3>Smart Intruder Alert — AI Vision + PIR + Relay + Wi-Fi</h3>
+          <div class="proj-tags">
+            <span class="tag" style="background:#dbeafe;color:#1d4ed8">Edge Impulse</span>
+            <span class="tag" style="background:#fef2f2;color:#991b1b">PIR Sensor</span>
+            <span class="tag" style="background:#f0fdf4;color:#166534">Relay + Buzzer</span>
+            <span class="tag" style="background:#ede9fe;color:#4c1d95">Wi-Fi Alert</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:.84rem;color:var(--muted);padding:1rem 1.1rem 0;line-height:1.7;max-width:860px">This capstone project combines <strong>PIR motion detection</strong> to wake the camera, an <strong>Edge Impulse FOMO model</strong> to confirm a person is present (reducing false alarms), and a <strong>Wi-Fi HTTP POST</strong> to push an alert to your phone via a free service like <strong>IFTTT</strong> or <strong>Telegram Bot</strong>. The relay can trigger a siren or lock.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:1rem 1.1rem">
+        <div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th>Component</th><th>ESP32-CAM GPIO</th></tr></thead>
+              <tbody>
+                <tr><td>PIR Sensor OUT</td><td>GPIO 13</td></tr>
+                <tr><td>Relay Signal</td><td>GPIO 12</td></tr>
+                <tr><td>Buzzer Signal</td><td>GPIO 15</td></tr>
+                <tr><td>Flash LED</td><td>GPIO 4 (built-in)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="background:#0d1117;border-radius:9px;padding:.9rem 1rem;font-family:'Space Mono',monospace;font-size:.72rem;color:#94a3b8;line-height:1.9;margin-top:.8rem">
+            <div style="color:#00d4ff;font-weight:700;margin-bottom:.4rem">// System Flow</div>
+            <div>1. PIR detects motion → wake ESP32-CAM</div>
+            <div>2. Capture frame → run FOMO inference</div>
+            <div>3. If person detected (conf &gt; 0.6):</div>
+            <div style="padding-left:1rem">→ Activate relay + buzzer</div>
+            <div style="padding-left:1rem">→ POST alert to Telegram</div>
+            <div style="padding-left:1rem">→ Save JPEG to MicroSD</div>
+            <div>4. Wait 30s before next detection</div>
+          </div>
+        </div>
+        <div>
+          <div class="code-block" style="margin-bottom:0">
+            <div class="code-hdr"><span class="code-lang">C++</span><span class="code-file">smart_intruder.ino</span></div>
+            <pre><span class="pp">#include</span> <span class="str">&lt;your-ei-project_inferencing.h&gt;</span>
+<span class="pp">#include</span> <span class="str">"esp_camera.h"</span>
+<span class="pp">#include</span> <span class="str">&lt;WiFi.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;HTTPClient.h&gt;</span>
+<span class="pp">#define</span> PIR    <span class="num">13</span>
+<span class="pp">#define</span> RELAY  <span class="num">12</span>
+<span class="pp">#define</span> BUZZER <span class="num">15</span>
+<span class="kw">const char</span>* TG_TOKEN = <span class="str">"YOUR_BOT_TOKEN"</span>;
+<span class="kw">const char</span>* TG_CHAT  = <span class="str">"YOUR_CHAT_ID"</span>;
+
+<span class="kw">void</span> <span class="fn">sendTelegramAlert</span>() {
+  HTTPClient http;
+  String url = <span class="str">"https://api.telegram.org/bot"</span>
+    + String(TG_TOKEN) + <span class="str">"/sendMessage?chat_id="</span>
+    + TG_CHAT + <span class="str">"&text=🚨+Intruder+Detected!"</span>;
+  http.<span class="fn">begin</span>(url);
+  http.<span class="fn">GET</span>();
+  http.<span class="fn">end</span>();
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">if</span>(digitalRead(PIR) != HIGH) <span class="kw">return</span>;
+  Serial.<span class="fn">println</span>(<span class="str">"PIR triggered — running AI..."</span>);
+
+  camera_fb_t* fb = <span class="fn">esp_camera_fb_get</span>();
+  <span class="kw">if</span>(!fb) <span class="kw">return</span>;
+
+  <span class="cm">// Run FOMO inference (populate signal first)</span>
+  ei_impulse_result_t result;
+  <span class="cm">// ... (signal setup as in Project 6)</span>
+  <span class="fn">run_classifier</span>(&signal, &result, <span class="kw">false</span>);
+
+  <span class="kw">bool</span> person_found = <span class="kw">false</span>;
+  <span class="kw">for</span>(<span class="kw">auto</span> bb : result.bounding_boxes) {
+    <span class="kw">if</span>(strcmp(bb.label, <span class="str">"person"</span>)==<span class="num">0</span>
+       && bb.value > <span class="num">0.6f</span>) {
+      person_found = <span class="kw">true</span>; <span class="kw">break</span>;
+    }
+  }
+  <span class="fn">esp_camera_fb_return</span>(fb);
+
+  <span class="kw">if</span>(person_found) {
+    digitalWrite(RELAY,  LOW);
+    digitalWrite(BUZZER, HIGH);
+    <span class="fn">sendTelegramAlert</span>();
+    delay(<span class="num">5000</span>);
+    digitalWrite(RELAY,  HIGH);
+    digitalWrite(BUZZER, LOW);
+    delay(<span class="num">30000</span>); <span class="cm">// cooldown</span>
+  }
+}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding:0 1.1rem 1rem">
+        <div class="sh" style="margin-top:1rem"><span class="sh-icon">📱</span> Telegram Bot Setup (Free Push Notifications)</div>
+        <div class="steps">
+          <div class="step"><div class="sn">1</div><div class="step-body">Open Telegram → search for <strong>@BotFather</strong> → type <code>/newbot</code> → follow prompts → copy the <strong>API token</strong></div></div>
+          <div class="step"><div class="sn">2</div><div class="step-body">Search for your new bot → send any message → visit <code>https://api.telegram.org/bot&lt;TOKEN&gt;/getUpdates</code> to get your <strong>chat_id</strong></div></div>
+          <div class="step"><div class="sn">3</div><div class="step-body">Paste both <code>TG_TOKEN</code> and <code>TG_CHAT</code> into the sketch → upload → trigger the PIR to test the alert</div></div>
+          <div class="step"><div class="sn">4</div><div class="step-body">To send a photo instead of text, use the <code>/sendPhoto</code> endpoint with multipart/form-data and the JPEG bytes from <code>fb->buf</code></div></div>
+        </div>
+        <div class="al ok">✅ <div>No monthly fees, no app to install — Telegram delivers alerts reliably over Wi-Fi anywhere in the world. Works on Android, iOS and desktop.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edge Impulse Comparison Table -->
+  <div class="sec alt">
+    <div class="sh"><span class="sh-icon">📊</span> Edge Impulse Model Comparison — Which to Use?</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Model Type</th><th>Use Case</th><th>Training Data Needed</th><th>Output</th><th>ESP32-CAM Speed</th></tr></thead>
+        <tbody>
+          <tr><td>Image Classification</td><td>What category is this? (mask/no-mask)</td><td>50+ per class, labeled by class</td><td>Class label + confidence %</td><td>~10 FPS</td></tr>
+          <tr><td>Object Detection (FOMO)</td><td>Where is it? Count objects</td><td>60+ per class, bounding boxes</td><td>Centroids + count</td><td>~30 FPS</td></tr>
+          <tr><td>Visual Anomaly (GMM)</td><td>Is this normal or defective?</td><td>40+ GOOD images only</td><td>Anomaly score (0–1)</td><td>~5 FPS</td></tr>
+          <tr><td>ESP-WHO Face Detection</td><td>Is a face present?</td><td>None — pre-trained model</td><td>Face bounding boxes</td><td>~7 FPS</td></tr>
+          <tr><td>TFLite Person Detect</td><td>Is a person in frame?</td><td>None — pre-trained model</td><td>Person / no-person score</td><td>~3 FPS</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="al info">💡 <div><strong>Decision guide:</strong> Start with <em>Classification</em> if you have 2–5 known categories. Use <em>FOMO</em> to count or locate. Use <em>Anomaly Detection</em> when you only have examples of "normal". Use <em>Face Detection</em> and <em>Person Detection</em> for out-of-the-box human detection without any training.</div></div>
+  </div>
+
+</div>
+
+<!-- ===== PART 8: RESISTOR REFERENCE ===== -->
+<div id="p8">
+  <div class="ph c7">
+    <div class="part-badge">Ω Part 8 of 8</div>
+    <h1>Resistor <em>Color Code Reference</em></h1>
+    <p class="ph-sub">Complete color band chart, 4-band and 5-band formulas with worked examples for the kit resistors.</p>
+  </div>
+
+  <div class="sec" id="p8a">
+    <div class="sh"><span class="sh-icon">🎨</span> Color Band Chart</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Color</th><th>Digit</th><th>Multiplier</th><th>Tolerance</th></tr></thead>
+        <tbody>
+          <tr><td style="background:#000;color:#fff;font-weight:800">■ Black</td><td>0</td><td>×1 (1Ω)</td><td>—</td></tr>
+          <tr><td style="background:#7b3f00;color:#fff;font-weight:800">■ Brown</td><td>1</td><td>×10</td><td>±1%</td></tr>
+          <tr><td style="background:#d32f2f;color:#fff;font-weight:800">■ Red</td><td>2</td><td>×100</td><td>±2%</td></tr>
+          <tr><td style="background:#e65100;color:#fff;font-weight:800">■ Orange</td><td>3</td><td>×1K</td><td>—</td></tr>
+          <tr><td style="background:#f9a825;color:#000;font-weight:800">■ Yellow</td><td>4</td><td>×10K</td><td>—</td></tr>
+          <tr><td style="background:#2e7d32;color:#fff;font-weight:800">■ Green</td><td>5</td><td>×100K</td><td>±0.5%</td></tr>
+          <tr><td style="background:#1565c0;color:#fff;font-weight:800">■ Blue</td><td>6</td><td>×1M</td><td>±0.25%</td></tr>
+          <tr><td style="background:#6a1b9a;color:#fff;font-weight:800">■ Violet</td><td>7</td><td>×10M</td><td>±0.1%</td></tr>
+          <tr><td style="background:#757575;color:#fff;font-weight:800">■ Grey</td><td>8</td><td>—</td><td>±0.05%</td></tr>
+          <tr><td style="background:#fff;color:#000;font-weight:800;border:1px solid #ddd">■ White</td><td>9</td><td>—</td><td>—</td></tr>
+          <tr><td style="background:#d4af37;color:#000;font-weight:800">■ Gold</td><td>—</td><td>×0.1</td><td>±5%</td></tr>
+          <tr><td style="background:#aaa;color:#000;font-weight:800">■ Silver</td><td>—</td><td>×0.01</td><td>±10%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cards">
+      <div class="card" style="border-color:#e65100">
+        <h4 style="color:#e65100">🔶 4-Band Formula</h4>
+        <p style="font-size:.8rem;margin:.3rem 0;color:var(--muted)">B1 = 1st digit | B2 = 2nd digit | B3 = Multiplier | B4 = Tolerance</p>
+        <div style="background:#fff3e0;border-radius:6px;padding:.4rem .7rem;font-family:'Space Mono',monospace;font-size:.78rem;color:#e65100;font-weight:700;margin-top:.4rem">Value = (B1×10 + B2) × Multiplier</div>
+        <p style="font-size:.74rem;color:var(--muted);margin-top:.4rem">Example: Red-Red-Brown-Gold = (22)×10 = <strong>220Ω ±5%</strong></p>
+      </div>
+      <div class="card" style="border-color:#1565c0">
+        <h4 style="color:#1565c0">🔷 5-Band Formula (Precision)</h4>
+        <p style="font-size:.8rem;margin:.3rem 0;color:var(--muted)">B1-B2-B3 = digits | B4 = Multiplier | B5 = Tolerance</p>
+        <div style="background:#e3f2fd;border-radius:6px;padding:.4rem .7rem;font-family:'Space Mono',monospace;font-size:.78rem;color:#1565c0;font-weight:700;margin-top:.4rem">Value = (B1×100 + B2×10 + B3) × Multiplier</div>
+        <p style="font-size:.74rem;color:var(--muted);margin-top:.4rem">Example: Brn-Blk-Blk-Org-Brn = 100×1K = <strong>100KΩ ±1%</strong></p>
+      </div>
+    </div>
+    <div class="al info">🥇 <div><strong>Reading tip:</strong> Always hold the resistor with the Gold/Silver tolerance band on the RIGHT, then read left to right. Memory trick: <strong>B.B. ROY of Great Britain Very Good Wife</strong> → Black, Brown, Red, Orange, Yellow, Green, Blue, Violet, Grey, White (0–9).</div></div>
+  </div>
+
+  <div class="sec alt" id="p8b">
+    <div class="sh"><span class="sh-icon">🧮</span> Kit Resistors — Worked Examples</div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Color Bands</th><th>Calculation</th><th>Value</th><th>Use in Kit</th></tr></thead>
+        <tbody>
+          <tr><td>Red-Red-Brown-Gold</td><td>(2×10+2)×10</td><td><strong>220Ω ±5%</strong></td><td>LED current limiting</td></tr>
+          <tr><td>Org-Org-Brown-Gold</td><td>(3×10+3)×10</td><td><strong>330Ω ±5%</strong></td><td>LED / RGB current limit</td></tr>
+          <tr><td>Brown-Black-Red-Gold</td><td>(1×10+0)×100</td><td><strong>1kΩ ±5%</strong></td><td>Pull-up / base resistor</td></tr>
+          <tr><td>Brown-Black-Orange-Gold</td><td>(1×10+0)×1K</td><td><strong>10kΩ ±5%</strong></td><td>Pull-up/down, I2C</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="done">
+    <div style="font-size:3rem;margin-bottom:.5rem">🎓</div>
+    <h2>Manual <em>Complete!</em></h2>
+    <p>All 8 parts of the Smart IoT &amp; AI Kit tutorial are done. You're ready to build!</p>
+    <div class="done-grid">
+      <span class="done-tag">Part 1 — Kit Overview</span>
+      <span class="done-tag">Part 2 — ESP32-CAM Setup</span>
+      <span class="done-tag">Part 3 — Sensors Guide</span>
+      <span class="done-tag">Part 4 — Actuators Guide</span>
+      <span class="done-tag">Part 5 — Display &amp; Input</span>
+      <span class="done-tag">Part 6 — IoT Projects 1–5</span>
+      <span class="done-tag">Part 7 — AI Vision Projects 1–8</span>
+      <span class="done-tag">Part 8 — Resistor Reference</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p style="font-size:1.4rem;margin-bottom:.4rem">🤖</p>
+  <p><strong>Smart IoT &amp; AI Kit — Complete Tutorial Manual</strong></p>
+  <p style="margin-top:.2rem">8 Parts · 5 IoT Projects · 8 AI Vision Projects · 30+ Components</p>
+  <p style="margin-top:.5rem;font-size:.68rem;opacity:.5">ESP32-CAM · Arduino IDE · Edge Impulse · TensorFlow Lite · FOMO · Anomaly Detection · Telegram Alerts</p>
+</footer>
+
+</div><!-- end .main -->
+
+<script>
+// Sidebar accordion toggle
+document.querySelectorAll('.npt').forEach(a => {
+  a.addEventListener('click', function() {
+    const p = this.closest('.np'), wasOpen = p.classList.contains('open');
+    document.querySelectorAll('.np').forEach(x => x.classList.remove('open'));
+    if (!wasOpen) p.classList.add('open');
+  });
+});
+
+// Active section highlight
+const sections = document.querySelectorAll('div[id^="p"], div[id^="j"]');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(x => {
+    if (x.isIntersecting) {
+      const id = x.target.id;
+      document.querySelectorAll('.npt').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { threshold: 0.08 });
+sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>

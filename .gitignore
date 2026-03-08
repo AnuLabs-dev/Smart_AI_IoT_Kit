@@ -1,0 +1,17 @@
+# Arduino build artifacts
+build/
+*.elf
+*.bin
+*.hex
+*.map
+
+# Edge Impulse library (users generate their own)
+*_inferencing/
+*-deploy-*.zip
+
+# macOS
+.DS_Store
+__MACOSX/
+
+# Windows
+Thumbs.db
